@@ -5,10 +5,10 @@ let font = import ./font.nix;
 in {
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs30;
     extraPackages = epkgs:
       with epkgs; [
         auctex
+        consult
         modus-themes
         nix-mode
         nix-sandbox
@@ -26,14 +26,12 @@ in {
         which-key
         helpful
         editorconfig
-        projectile
         magit
         company
         ace-window
         ivy
         swiper
         counsel
-        counsel-projectile
         auto-virtualenv
         xclip
         rust-mode
@@ -112,12 +110,12 @@ in {
         '(secondary-selection ((t (:background "#${config.colorScheme.palette.base02}" ))))
         '(font-lock-builtin-face ((t (:foreground "#a2a371" ))))
         '(font-lock-comment-face ((t (:foreground "#${config.colorScheme.palette.base03}" ))))
-        '(font-lock-function-name-face ((t (:foreground "#${config.colorScheme.palette.base0D}" ))))
+        '(font-lock-function-name-face ((t (:foreground "#${config.colorScheme.palette.base0D}" :bold t))))
         '(font-lock-keyword-face ((t (:foreground "#${config.colorScheme.palette.base0E}" ))))
         '(font-lock-string-face ((t (:foreground "#${config.colorScheme.palette.base0B}" ))))
         '(font-lock-type-face ((t (:foreground "#${config.colorScheme.palette.base0A}" ))))
         '(font-lock-constant-face ((t (:foreground "#${config.colorScheme.palette.base09}" ))))
-        '(font-lock-variable-name-face ((t (:foreground "#${config.colorScheme.palette.base08}" ))))
+        '(font-lock-variable-name-face ((t (:foreground "#${config.colorScheme.palette.base0D}" ))))
         '(minibuffer-prompt ((t (:foreground "#${config.colorScheme.palette.base01}" :bold t ))))
         '(font-lock-warning-face ((t (:foreground "#${config.colorScheme.palette.base04}" :bold t ))))
         '(line-number ((t (:foreground "#${config.colorScheme.palette.base04}" :background "#${config.colorScheme.palette.base02}"))))
@@ -203,10 +201,6 @@ in {
       (window-divider-mode +1)
       (setq window-divider-default-right-width 2 window-divider-default-bottom-width 2)
 
-      (projectile-mode)
-      (counsel-projectile-mode)
-      (setq projectile-switch-project-action #'projectile-dired)
-
       (setq vterm-max-scrollback 10000)
       (setq read-process-output-max (* 1024 1024)) ;; 1mb
       (setq vterm-shell "nu")
@@ -267,10 +261,15 @@ in {
           '(org-level-2 ((t (:inherit variable-pitch :weight bold :height 1.4))))
           '(org-level-3 ((t (:inherit variable-pitch :weight semi-bold :height 1.3))))
           '(org-block ((t (:inherit fixed-pitch :background "#${config.colorScheme.palette.base02}" :foreground "#${config.colorScheme.palette.base04}"))))
-          '(org-block-begin-line ((t (:inherit fixed-pitch :background "#${config.colorScheme.palette.base02}" :foreground "#${config.colorScheme.palette.base01}" :slant italic))))
-          '(org-block-end-line ((t (:inherit fixed-pitch :background "#${config.colorScheme.palette.base02}" :foreground "#${config.colorScheme.palette.base01}" :slant italic))))
+          '(org-block-begin-line ((t (:inherit fixed-pitch :background "#${config.colorScheme.palette.base07}" :foreground "#${config.colorScheme.palette.base01}" :slant italic))))
+          '(org-block-end-line ((t (:inherit fixed-pitch :background "#${config.colorScheme.palette.base07}" :foreground "#${config.colorScheme.palette.base01}" :slant italic))))
           '(org-todo ((t (:inherit fixed-pitch :background "#${config.colorScheme.palette.base02}" :foreground "#${config.colorScheme.palette.base04}" :weight bold))))
-          '(org-done ((t (:inherit fixed-pitch :background "#${config.colorScheme.palette.base02}" :foreground "#${config.colorScheme.palette.base04}" :weight semi-bold)))))
+          '(org-table ((t (:inherit fixed-pitch :foreground "#${config.colorScheme.palette.base01}"))))
+          '(org-done ((t (:inherit fixed-pitch :background "#${config.colorScheme.palette.base02}" :foreground "#${config.colorScheme.palette.base04}" :weight semi-bold))))
+          '(org-agenda-structure ((t (:foreground "#${config.colorScheme.palette.base04}"}))))
+          '(org-agenda-date ((t (:foreground "#${config.colorScheme.palette.base04}"}))))
+          '(org-agenda-date-today ((t (:foreground "#${config.colorScheme.palette.base04}" :weight bold :slant italic))))
+          '(org-agenda-todo ((t (:foreground "#${config.colorScheme.palette.base02}")))))
         (setq org-cycle-separator-lines 2)
 
         (org-superstar-mode 1)
@@ -312,8 +311,13 @@ in {
       (global-set-key (kbd "M-o") 'ace-window)
       (global-set-key (kbd "C-s") 'swiper)
       (global-set-key (kbd "C-r") 'swiper-backward)
-      (global-set-key (kbd "C-c p") 'projectile-command-map)
+      (global-set-key (kbd "C-c p f") #'consult-find)
+      (global-set-key (kbd "C-c p p") #'project-switch-project)
+      (global-set-key (kbd "C-c p s r") #'consult-ripgrep)
+      (global-set-key (kbd "C-c p e") #'project-eshell)
+
       (global-set-key (kbd "C-c p e") 'vterm)
+      (global-set-key (kbd "C-c a") 'org-agenda)
       (defun reopen-file-as-root ()
              (interactive)
              (when buffer-file-name
@@ -341,6 +345,16 @@ in {
                                                      (lsp-mode)
                                                      (global-set-key (kbd "C-c C-i") 'lean4-toggle-info))))
 
+      (setq lsp-file-watch-ignored
+        '("[/\\\\]\\.git$"
+          "[/\\\\]\\.direnv$"
+          "[/\\\\]dist-newstyle$"
+          "[/\\\\]\\.cache$"
+          "[/\\\\]\\.stack-work$"
+          "[/\\\\]\\.nix$"
+          "[/\\\\]\\.venv$"
+          "[/\\\\]node_modules$"))
+
       ;; Buffer stuff
       (recentf-mode 1)
       (savehist-mode 1)
@@ -353,7 +367,8 @@ in {
       (setq xclip-mode t)
       (setq xclip-method (quote wl-copy))
 
-      (setq org-agenda-files '("~/Documents/org/Todo.org"))
+      (setq org-agenda-files '("~/Documents/org/Todo.org" "~/Documents/org/BimboDiscipline.org"))
+      (require 'org-agenda)
       (find-file "~/Documents/org/Todo.org")
 
       (set-face-attribute 'default nil :font "IosevkaTerm Nerd Font Mono" :height 140)

@@ -20,6 +20,9 @@
       modules = [
         ./hosts/default/configuration.nix
         inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+        ({ config, pkgs, ... }: {
+          nixpkgs.config.allowUnfree = true;
+        })
       ];
     };
   };

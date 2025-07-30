@@ -251,6 +251,7 @@ in {
 
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    zoom
     wget
     emacs
     home-manager

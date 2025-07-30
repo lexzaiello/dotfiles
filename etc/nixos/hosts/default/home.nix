@@ -4,7 +4,6 @@
   imports = [
     inputs.nix-colors.homeManagerModules.default
     ./features/xdg.nix
-    ./features/mako.nix
     ./features/alacritty.nix
     ./features/gtk.nix
     ./features/qt.nix
@@ -153,6 +152,10 @@
       blur-method = "dual_kawase";
       blur-strength = 7;
       vsync = true;
+    '';
+    ".config/direnv/direnv.toml".text = ''
+      [global]
+      log_filter = "^$"
     '';
   };
 
