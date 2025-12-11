@@ -4,7 +4,7 @@ let
   system = "x86_64-linux";
 in {
   imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    (import ./hardware-configuration.nix args)
     inputs.home-manager.nixosModules.default
   ];
 

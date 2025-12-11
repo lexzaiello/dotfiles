@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+args@{ pkgs, lib, ... }:
 
 let
   colorscheme = import ./features/colorscheme.nix;
@@ -47,16 +47,16 @@ in {
     allowUnfree = true;
   };
   imports = [
-    ./features/xdg.nix
-    ./features/alacritty.nix
-    ./features/gtk.nix
-    ./features/qt.nix
-    ./features/zsh.nix
-    ./features/emacs.nix
-    ./features/git.nix
-    ./features/direnv.nix
-    ./features/nushell.nix
-    ./features/polybar.nix
+    (import ./features/xdg.nix)
+    (import ./features/alacritty.nix args)
+    (import ./features/gtk.nix args)
+    (import ./features/qt.nix args)
+    (import ./features/zsh.nix args)
+    (import ./features/emacs.nix args)
+    (import ./features/git.nix)
+    (import ./features/direnv.nix)
+    (import ./features/nushell.nix args)
+    (import ./features/polybar.nix args)
   ];
 
   dconf = {
