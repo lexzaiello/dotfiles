@@ -148,7 +148,6 @@ in {
     chromium
     flameshot
     vale
-    inputs.proselint.packages.${system}.default
     elan
     lldb
     gdb
