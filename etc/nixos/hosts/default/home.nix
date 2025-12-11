@@ -94,7 +94,7 @@ in {
     });
     my_dmenu = pkgs.writeShellScriptBin "mydmenu_run" ''
       #!/bin/sh
-      dmenu_run  -nb "#${colorscheme.palette.base00}" -nf "#${colorscheme.palette.base01}" -sf "#${colorscheme.palette.base00}" -sb "#${colorscheme.palette.base01}"
+      dmenu_run  -nb "${colorscheme.palette.base00}" -nf "${colorscheme.palette.base01}" -sf "${colorscheme.palette.base00}" -sb "${colorscheme.palette.base01}"
     '';
   in with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
