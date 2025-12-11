@@ -16,7 +16,8 @@
   outputs = { self, nixpkgs, ... }: {
     nixosModules.default = ./etc/nixos/hosts/default/configuration.nix;
     checks = {
-      check-config-build = (nixpkgs.lib.nixosSystem {
+      x86_64-linux.check-config-build = (nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         specialArgs = {
           inherit (self) inputs; # or just 'inherit inputs;' depending on scope
         };

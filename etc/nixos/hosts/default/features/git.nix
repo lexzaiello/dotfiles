@@ -2,8 +2,8 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "Alexandra Aiello";
-    userEmail = "dowlandaiello@gmail.com";
+    settings.user.name = "Alexandra Aiello";
+    settings.user.email = "dowlandaiello@gmail.com";
     ignores = [
       "*~"
       "\\#*\\#"
