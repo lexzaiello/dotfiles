@@ -32,7 +32,7 @@ let
   '');
   forall_monitors = (prefix: data_with_n:
     lib.map (n: {
-      name = "${prefix}${toString n}";
+      name = "${prefix}${toString n}/config";
       value = {
         text = data_with_n n;
       };
