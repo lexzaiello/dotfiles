@@ -2,7 +2,7 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "Dowland Aiello";
+    userName = "Alexandra Aiello";
     userEmail = "dowlandaiello@gmail.com";
     ignores = [
       "*~"

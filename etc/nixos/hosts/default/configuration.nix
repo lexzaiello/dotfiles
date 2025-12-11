@@ -7,6 +7,15 @@ in {
     inputs.home-manager.nixosModules.default
   ];
 
+  # Binary Cache for haskell.nix
+  nix.settings.trusted-public-keys = [
+    "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+  ];
+  nix.settings.substituters = [
+    "https://cache.iog.io"
+  ];
+
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -47,7 +56,7 @@ in {
     font-awesome
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     liberation_ttf
     fira-code
     fira-code-symbols
@@ -84,7 +93,7 @@ in {
   services.autorandr.enable = true;
   services.picom = {
     enable = true;
-    package = pkgs.picom-next;
+    package = pkgs.picom;
     backend = "glx";
     settings = {
       corner-radius = 12;
@@ -194,13 +203,6 @@ in {
           '';
         };
     };
-    xrandrHeads = [
-      {
-        output = "eDP-1";
-        primary = true;
-      }
-      { output = "DP-4"; }
-    ];
   };
 
   # Enable CUPS to print documents.
@@ -236,7 +238,7 @@ in {
   users.users.dowlandaiello = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" "docker" "podman" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "podman" "dialout" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.nushell;
     packages = with pkgs; [ ];
   };

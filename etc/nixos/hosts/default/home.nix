@@ -1,6 +1,46 @@
 { config, pkgs, lib, inputs, ... }:
 
-{
+let
+  mk_auto_randr_config = (port: ''
+    output eDP
+    crtc 0
+    mode 2560x1600
+    pos 0x0
+    primary
+    rate 165.00
+    x-prop-colorspace Default
+    x-prop-max_bpc 16
+    x-prop-non_desktop 0
+    x-prop-scaling_mode None
+    x-prop-tearfree auto
+    x-prop-underscan off
+    x-prop-underscan_hborder 0
+    x-prop-underscan_vborder 0
+    output DisplayPort-${toString port}
+    crtc 1
+    mode 2560x1440
+    pos 2560x0
+    rate 59.95
+    x-prop-colorspace Default
+    x-prop-max_bpc 8
+    x-prop-non_desktop 0
+    x-prop-scaling_mode None
+    x-prop-tearfree auto
+    x-prop-underscan off
+    x-prop-underscan_hborder 0
+    x-prop-underscan_vborder 0
+  '');
+  forall_monitors = (prefix: data_with_n:
+    lib.map (n: {
+      name = "${prefix}${toString n}";
+      value = {
+        text = data_with_n n;
+      };
+    }) (lib.range 0 10));
+  autorandr_configs = builtins.listToAttrs
+    (forall_monitors ".config/autorandr/two-monitors"
+      (n: mk_auto_randr_config n));
+in {
   imports = [
     inputs.nix-colors.homeManagerModules.default
     ./features/xdg.nix
@@ -28,6 +68,7 @@
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "obsidian"
+      "discord"
       "vscode-extension-ms-vscode-cpptools"
     ];
 
@@ -51,11 +92,8 @@
     tex = (pkgs.texlive.combine {
       inherit (pkgs.texlive)
         scheme-medium dvisvgm dvipng # for preview and export as html
-        wrapfig amsmath ulem hyperref capt-of
-        mathpartir
-        minted
-        upquote
-        ec cm;
+        wrapfig amsmath ulem hyperref capt-of mathpartir minted upquote
+        needspace ec cm;
       #(setq org-latex-compiler "lualatex")
       #(setq org-preview-latex-default-process 'dvisvgm)
     });
@@ -101,6 +139,7 @@
     docker-compose
     tor-browser
     protobuf
+    discord
     nodePackages.typescript-language-server
     typescript
     kdePackages.kleopatra
@@ -115,7 +154,7 @@
     gdb
     llvm
     obs-studio
-    picom-next
+    picom
     ghostscript
     tex
     (rstudioWrapper.override {
@@ -157,7 +196,7 @@
       [global]
       log_filter = "^$"
     '';
-  };
+  } // autorandr_configs;
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. If you don't want to manage your shell through Home
