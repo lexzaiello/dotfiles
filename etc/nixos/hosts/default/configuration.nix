@@ -1,12 +1,8 @@
-{ lib, pkgs, inputs, ... }:
+args@{ lib, pkgs, inputs, ... }:
 
 let
   system = "x86_64-linux";
 in {
-  nixpkgs.config = {
-    allowUnfree = true;
-    pulseaudio = true;
-  };
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
@@ -247,7 +243,7 @@ in {
   };
 
   home-manager = {
-    users = { "dowlandaiello" = import ./home.nix; };
+    users = { "dowlandaiello" = import ./home.nix args; };
   };
 
   xdg.portal.config = { common = { default = [ "gtk" ]; }; };

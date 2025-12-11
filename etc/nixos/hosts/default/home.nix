@@ -1,9 +1,8 @@
-{ pkgs, inputs, ... }:
+{ pkgs, lib, ... }:
 
 let
   colorscheme = import ./features/colorscheme.nix;
   system = "x86_64-linux";
-  lib = inputs.nixpkgs.lib;
   mk_auto_randr_config = (port: ''
     output eDP
     crtc 0
@@ -48,7 +47,6 @@ in {
     allowUnfree = true;
   };
   imports = [
-    inputs.nix-colors.homeManagerModules.default
     ./features/xdg.nix
     ./features/alacritty.nix
     ./features/gtk.nix
@@ -60,8 +58,6 @@ in {
     ./features/nushell.nix
     ./features/polybar.nix
   ];
-
-  colorScheme = import ./features/colorscheme.nix;
 
   dconf = {
     enable = true;
