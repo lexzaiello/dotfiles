@@ -1,6 +1,9 @@
-{ config, lib, pkgs, inputs, ... }:
+{ inputs, ... }:
 
-let system = "x86_64-linux";
+let
+  system = "x86_64-linux";
+  pkgs = inputs.nixpkgs.legacyPackages.${system};
+  lib = inputs.nixpkgs.lib;
 in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix

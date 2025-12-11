@@ -2,22 +2,24 @@
   description = "My system config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/NixOS/nixpkgs/addf7cf5f383a3101ecfba091b98d0a1263dc9b8";
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs?rev=addf7cf5f383a3101ecfba091b98d0a1263dc9b8";
+    };
     home-manager = {
-      url = "github:nix-community/home-manager/97e3022a8d2c09313fa49847f6da4d76abcfc72d";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors/b01f024090d2c4fc3152cd0cf12027a7b8453ba1";
     nixos-hardware.url = "github:NixOS/nixos-hardware/43ffe9ac82567512abb83187cb673de1091bdfa8";
   };
 
-  outputs = { self, nixpkgs, ... }: {
+  outputs = inputs@{ self, nixpkgs, ... }: {
     nixosModules.default = ./etc/nixos/hosts/default/configuration.nix;
     checks = {
       x86_64-linux.check-config-build = (nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
-          inherit (self) inputs; # or just 'inherit inputs;' depending on scope
+          inputs = inputs; # or just 'inherit inputs;' depending on scope
         };
         modules = [
           self.nixosModules.default
