@@ -2,13 +2,13 @@
   description = "My system config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/addf7cf5f383a3101ecfba091b98d0a1263dc9b8";
+    nixpkgs.url = "github:NixOS/nixpkgs/NixOS/nixpkgs/addf7cf5f383a3101ecfba091b98d0a1263dc9b8";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/97e3022a8d2c09313fa49847f6da4d76abcfc72d";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors/b01f024090d2c4fc3152cd0cf12027a7b8453ba1";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/9154f4569b6cdfd3c595851a6ba51bfaa472d9f3";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/43ffe9ac82567512abb83187cb673de1091bdfa8";
   };
 
   outputs = { self, nixpkgs, ... }: {
