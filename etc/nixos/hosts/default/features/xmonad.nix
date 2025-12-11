@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
+{ pkgs, inputs, ... }:
 
-{
+let
+  system = "x86_64-linux";
+in {
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;

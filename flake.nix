@@ -13,20 +13,29 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/43ffe9ac82567512abb83187cb673de1091bdfa8";
   };
 
-  outputs = inputs@{ self, nixpkgs, ... }: {
-    nixosModules.default = ./etc/nixos/hosts/default/configuration.nix;
+  outputs = inputs@{ nixpkgs, ... }: let
+    system = "x86_64-linux";
+    lib = nixpkgs.lib;
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+        pulseaudio = true;
+      };
+    };
+    defaultModule = ./etc/nixos/hosts/default/configuration.nix;
+  in {
+    nixosModules.default = defaultModule;
     checks = {
-      x86_64-linux.check-config-build = (nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      x86_64-linux.check-config-build = (lib.nixosSystem {
+        inherit system;
+        inherit pkgs;
         specialArgs = {
-          inputs = inputs; # or just 'inherit inputs;' depending on scope
+          inputs = inputs;
         };
         modules = [
-          self.nixosModules.default
-          self.inputs.nixos-hardware.nixosModules.framework-16-7040-amd
-          ({ config, pkgs, ... }: {
-            nixpkgs.config.allowUnfree = true;
-          })
+          defaultModule
+          inputs.nixos-hardware.nixosModules.framework-16-7040-amd
         ];
       }).config.system.build.toplevel;
     };

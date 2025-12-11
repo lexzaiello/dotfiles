@@ -1,13 +1,14 @@
-{ config, pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 let
+  system = "x86_64-linux";
+  colorscheme = import ./colorscheme.nix;
   icons = {
     cpu = "CPU: ";
     memory = "RAM: ";
     date = "DATE: ";
     wifi = "WIFI: ";
   };
-in let
   fonts = {
     font-0 = "IosevkaTerm Nerd Font:pixelsize=10;1";
     font-1 = "IosevkaTerm Nerd Font:pixelsize=10;1";
@@ -31,8 +32,8 @@ in {
 
         bottom = false;
         top = true;
-        background = "#${config.colorScheme.palette.base00}";
-        foreground = "#${config.colorScheme.palette.base01}";
+        background = "#${colorscheme.palette.base00}";
+        foreground = "#${colorscheme.palette.base01}";
 
         modules-left = "ewmh";
 
@@ -45,8 +46,8 @@ in {
         wm-restack = "i3";
 
         border-bottom-size = 1;
-        border-bottom-color = "#${config.colorScheme.palette.base02}";
-        border-top-color = "#${config.colorScheme.palette.base02}";
+        border-bottom-color = "#${colorscheme.palette.base02}";
+        border-top-color = "#${colorscheme.palette.base02}";
         line-size = 1;
       };
 
@@ -97,13 +98,13 @@ in {
         label-muted = "sound muted";
 
         bar-volume-width = "10";
-        bar-volume-foreground-0 = "#${config.colorScheme.palette.base04}";
-        bar-volume-foreground-1 = "#${config.colorScheme.palette.base04}";
-        bar-volume-foreground-2 = "#${config.colorScheme.palette.base04}";
-        bar-volume-foreground-3 = "#${config.colorScheme.palette.base04}";
-        bar-volume-foreground-4 = "#${config.colorScheme.palette.base04}";
-        bar-volume-foreground-5 = "#${config.colorScheme.palette.base05}";
-        bar-volume-foreground-6 = "#${config.colorScheme.palette.base06}";
+        bar-volume-foreground-0 = "#${colorscheme.palette.base04}";
+        bar-volume-foreground-1 = "#${colorscheme.palette.base04}";
+        bar-volume-foreground-2 = "#${colorscheme.palette.base04}";
+        bar-volume-foreground-3 = "#${colorscheme.palette.base04}";
+        bar-volume-foreground-4 = "#${colorscheme.palette.base04}";
+        bar-volume-foreground-5 = "#${colorscheme.palette.base05}";
+        bar-volume-foreground-6 = "#${colorscheme.palette.base06}";
         bar-volume-indicator = "|";
         bar-volume-indicator-font = "2";
         bar-volume-fill = "─";
@@ -162,9 +163,9 @@ in {
       "module/ewmh" = fonts // {
         type = "internal/xworkspaces";
 
-        label-active-foreground = "#${config.colorScheme.palette.base01}";
-        label-inactive-foreground = "#${config.colorScheme.palette.base02}";
-        label-active-underline = "#${config.colorScheme.palette.base01}";
+        label-active-foreground = "#${colorscheme.palette.base01}";
+        label-inactive-foreground = "#${colorscheme.palette.base02}";
+        label-active-underline = "#${colorscheme.palette.base01}";
 
         pin-workspaces = true;
         group-by-monitor = false;

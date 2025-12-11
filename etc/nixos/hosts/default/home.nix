@@ -1,6 +1,9 @@
-{ config, pkgs, lib, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 let
+  colorscheme = import ./features/colorscheme.nix;
+  system = "x86_64-linux";
+  lib = inputs.nixpkgs.lib;
   mk_auto_randr_config = (port: ''
     output eDP
     crtc 0
@@ -41,6 +44,9 @@ let
     (forall_monitors ".config/autorandr/two-monitors"
       (n: mk_auto_randr_config n));
 in {
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
   imports = [
     inputs.nix-colors.homeManagerModules.default
     ./features/xdg.nix
@@ -64,13 +70,6 @@ in {
       "org/gnome/desktop/interface" = { color-scheme = "prefer-light"; };
     };
   };
-
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "obsidian"
-      "discord"
-      "vscode-extension-ms-vscode-cpptools"
-    ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -99,7 +98,7 @@ in {
     });
     my_dmenu = pkgs.writeShellScriptBin "mydmenu_run" ''
       #!/bin/sh
-      dmenu_run  -nb "#${config.colorScheme.palette.base00}" -nf "#${config.colorScheme.palette.base01}" -sf "#${config.colorScheme.palette.base00}" -sb "#${config.colorScheme.palette.base01}"
+      dmenu_run  -nb "#${colorscheme.palette.base00}" -nf "#${colorscheme.palette.base01}" -sf "#${colorscheme.palette.base00}" -sb "#${colorscheme.palette.base01}"
     '';
   in with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly

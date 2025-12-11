@@ -1,10 +1,12 @@
-{ inputs, ... }:
+{ lib, pkgs, inputs, ... }:
 
 let
   system = "x86_64-linux";
-  pkgs = inputs.nixpkgs.legacyPackages.${system};
-  lib = inputs.nixpkgs.lib;
 in {
+  nixpkgs.config = {
+    allowUnfree = true;
+    pulseaudio = true;
+  };
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
@@ -89,8 +91,6 @@ in {
   programs.nix-ld.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  nixpkgs.config.pulseaudio = true;
 
   # Configure keymap in X11
   services.autorandr.enable = true;
@@ -248,8 +248,6 @@ in {
 
   home-manager = {
     users = { "dowlandaiello" = import ./home.nix; };
-
-    extraSpecialArgs = { inherit inputs; };
   };
 
   xdg.portal.config = { common = { default = [ "gtk" ]; }; };

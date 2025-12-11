@@ -1,6 +1,8 @@
-{ pkgs }:
+{ pkgs, inputs, ... }:
 
-pkgs.stdenv.mkDerivation {
+let
+  system = "x86_64-linux";
+in pkgs.stdenv.mkDerivation {
   name = "gruvbox-plus";
   src = pkgs.fetchurl {
     url = "https://github.com/SylEleuth/gruvbox-plus-icon-pack/releases/download/v5.3.1/gruvbox-plus-icon-pack-5.3.1.zip";
