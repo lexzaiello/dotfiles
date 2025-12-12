@@ -32,8 +32,8 @@ in {
 
         bottom = false;
         top = true;
-        background = "#${colorscheme.palette.base00}";
-        foreground = "#${colorscheme.palette.base01}";
+        background = "${colorscheme.palette.base00}";
+        foreground = "${colorscheme.palette.base01}";
 
         modules-left = "ewmh";
 
@@ -46,8 +46,8 @@ in {
         wm-restack = "i3";
 
         border-bottom-size = 1;
-        border-bottom-color = "#${colorscheme.palette.base02}";
-        border-top-color = "#${colorscheme.palette.base02}";
+        border-bottom-color = "${colorscheme.palette.base02}";
+        border-top-color = "${colorscheme.palette.base02}";
         line-size = 1;
       };
 
@@ -98,13 +98,13 @@ in {
         label-muted = "sound muted";
 
         bar-volume-width = "10";
-        bar-volume-foreground-0 = "#${colorscheme.palette.base04}";
-        bar-volume-foreground-1 = "#${colorscheme.palette.base04}";
-        bar-volume-foreground-2 = "#${colorscheme.palette.base04}";
-        bar-volume-foreground-3 = "#${colorscheme.palette.base04}";
-        bar-volume-foreground-4 = "#${colorscheme.palette.base04}";
-        bar-volume-foreground-5 = "#${colorscheme.palette.base05}";
-        bar-volume-foreground-6 = "#${colorscheme.palette.base06}";
+        bar-volume-foreground-0 = "${colorscheme.palette.base04}";
+        bar-volume-foreground-1 = "${colorscheme.palette.base04}";
+        bar-volume-foreground-2 = "${colorscheme.palette.base04}";
+        bar-volume-foreground-3 = "${colorscheme.palette.base04}";
+        bar-volume-foreground-4 = "${colorscheme.palette.base04}";
+        bar-volume-foreground-5 = "${colorscheme.palette.base05}";
+        bar-volume-foreground-6 = "${colorscheme.palette.base06}";
         bar-volume-indicator = "|";
         bar-volume-indicator-font = "2";
         bar-volume-fill = "─";
@@ -163,9 +163,9 @@ in {
       "module/ewmh" = fonts // {
         type = "internal/xworkspaces";
 
-        label-active-foreground = "#${colorscheme.palette.base01}";
-        label-inactive-foreground = "#${colorscheme.palette.base02}";
-        label-active-underline = "#${colorscheme.palette.base01}";
+        label-active-foreground = "${colorscheme.palette.base01}";
+        label-inactive-foreground = "${colorscheme.palette.base02}";
+        label-active-underline = "${colorscheme.palette.base01}";
 
         pin-workspaces = true;
         group-by-monitor = false;
