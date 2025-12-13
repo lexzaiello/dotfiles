@@ -73,10 +73,10 @@ in {
       (setq TeX-auto-save t)
       (setq TeX-parse-self t)
 
-      (defun cc-nix ()
-        (compile "nix build"))
+      (add-hook 'latex-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c C-r") (lambda () compile "nix build"))))
 
-      (define-key latex-mode-map (kbd "C-c C-r") 'cc-nix)
       (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
       (setq gc-cons-threshold (* 100 1024 1024))
