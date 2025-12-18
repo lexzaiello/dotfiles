@@ -78,9 +78,7 @@ in {
 
       (add-hook 'LaTeX-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-c [") (lambda ()
-              (interactive)
-              (citar-insert-citation)))))
+            (local-set-key (kbd "C-c [") #'citar-insert-citation)))
 
       (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
