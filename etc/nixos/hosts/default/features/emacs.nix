@@ -10,6 +10,7 @@ in {
     enable = true;
     extraPackages = epkgs:
       with epkgs; [
+        vertico
         citar
         auctex
         consult
@@ -60,6 +61,7 @@ in {
         pdf-tools
       ];
     extraConfig = ''
+      (vertico-mode)
       (scroll-bar-mode -1)
       (tool-bar-mode -1)
       (tooltip-mode -1)
