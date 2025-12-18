@@ -97,6 +97,7 @@ in {
       dmenu_run  -nb "${colorscheme.palette.base00}" -nf "${colorscheme.palette.base01}" -sf "${colorscheme.palette.base00}" -sb "${colorscheme.palette.base01}"
     '';
   in with pkgs; [
+    cachix
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
