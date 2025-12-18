@@ -76,10 +76,11 @@ in {
       (setq TeX-auto-save t)
       (setq TeX-parse-self t)
 
-      (add-hook 'latex-mode-hook
+      (add-hook 'LaTeX-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-c C-r") (lambda () compile "nix build"))
-            (local-set-key (kbd "C-c [") (lambda () 'citar-insert-citation))))
+            (local-set-key (kbd "C-c [") (lambda ()
+              (interactive)
+              (citar-insert-citation)))))
 
       (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
