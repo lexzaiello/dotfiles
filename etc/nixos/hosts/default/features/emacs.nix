@@ -384,6 +384,12 @@ in {
       (set-face-attribute 'fixed-pitch nil :font "IosevkaTerm Nerd Font Mono" :height 140)
       (set-face-attribute 'variable-pitch nil :font "Comic Neue" :height 140)
       (setq initial-frame-alist '((font . "IosevkaTerm Nerd Font Mono")))
+
+      (with-eval-after-load 'tex
+                            (add-to-list 'TeX-command-list
+                            '("NixBuild" "nix build"
+                            TeX-run-command nil t :help "Run project-specific Nix build")
+                            t))
     '';
   };
   services.emacs = {
