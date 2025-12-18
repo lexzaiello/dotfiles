@@ -10,6 +10,7 @@ in {
     enable = true;
     extraPackages = epkgs:
       with epkgs; [
+        citar
         auctex
         consult
         modus-themes
@@ -75,7 +76,8 @@ in {
 
       (add-hook 'latex-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-c C-r") (lambda () compile "nix build"))))
+            (local-set-key (kbd "C-c C-r") (lambda () compile "nix build"))
+            (local-set-key (kbd "C-c [")) (lambda () 'citar-insert-citation))))
 
       (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
