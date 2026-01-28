@@ -134,12 +134,10 @@ in {
     rustfmt
     pavucontrol
     docker-compose
-    tor-browser
     protobuf
     discord
     nodePackages.typescript-language-server
     typescript
-    kdePackages.kleopatra
     signal-desktop
     obsidian
     chromium
