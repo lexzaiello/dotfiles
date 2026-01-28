@@ -76,6 +76,21 @@ in {
       (setq TeX-auto-save t)
       (setq TeX-parse-self t)
 
+      (defun my/hourly-nag-with-snooze ()
+        "Prompt the user. If 'yes', open research file. If 'no', snooze for 5 mins."
+        (interactive)
+        (let ((research-file "~/Documents/org/skills/Skills.org"))
+          (if (y-or-n-p "Hourly check-in: Have you consulted the manual? ")
+              (progn
+                (find-file research-file)
+                (goto-char (point-max))
+                (message "Good job!" (file-name-nondiscard research-file)))
+            (progn
+              (message "I'll check back in 5 minutes.")
+              (run-at-time "5 min" nil #'my/hourly-nag-with-snooze)))))
+
+      (run-at-time "00:00" 7200 #'my/hourly-nag-with-snooze)
+
       (add-hook 'LaTeX-mode-hook
           (lambda ()
             (local-set-key (kbd "C-c [") #'citar-insert-citation)))
