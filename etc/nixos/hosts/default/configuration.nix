@@ -34,7 +34,6 @@ in {
   networking.hostName = "dggLnixsigma"; # Define your hostname.
   networking.hostId = "e5bf82bb";
   # Pick only one of the below networking options.
-  networking.wireless.enable = false;
   networking.networkmanager.enable = true;
   networking.dhcpcd.enable = true;
   services.resolved.enable = true;
