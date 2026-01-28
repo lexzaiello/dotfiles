@@ -76,20 +76,31 @@ in {
       (setq TeX-auto-save t)
       (setq TeX-parse-self t)
 
+      (defvar my/research-file "~/Documents/org/skills/Skills.org"
+        "Path to the research/skills file.")
+
       (defun my/hourly-nag-with-snooze ()
-        "Prompt the user. If 'yes', open research file. If 'no', snooze for 5 mins."
+        "Prompt the user. If 'yes', open research file. If 'no', snooze for 5 mins.
+      Uses idle timers to avoid interrupting Lean LSP processing."
         (interactive)
-        (let ((research-file "~/Documents/org/skills/Skills.org"))
+        ;; Guard: Don't interrupt if the user is already typing in the minibuffer
+        (unless (active-minibuffer-window)
           (if (y-or-n-p "Hourly check-in: Have you consulted the manual? ")
               (progn
-                (find-file research-file)
+                (find-file my/research-file)
                 (goto-char (point-max))
-                (message "Good job!" (file-name-nondiscard research-file)))
+                (message "Good job! Entry point at end of buffer."))
             (progn
-              (message "I'll check back in 5 minutes.")
-              (run-at-time "5 min" nil #'my/hourly-nag-with-snooze)))))
+              (message "Understood. Snoozing for 5 minutes...")
+              ;; Use an idle timer for the snooze so it doesn't pop up while 
+              ;; you are mid-sentence in a proof.
+              (run-with-idle-timer 300 nil #'my/hourly-nag-with-snooze)))))
 
-      (run-at-time "00:00" 7200 #'my/hourly-nag-with-snooze)
+      ;; Refactor: Use a 2-hour interval (7200s) as requested.
+      ;; We schedule the main check-in to only trigger once you've been 
+      ;; IDLE for 20 seconds within that window.
+      (run-at-time "00:00" 7200 
+             (lambda () (run-with-idle-timer 20 nil #'my/hourly-nag-with-snooze)))
 
       (add-hook 'LaTeX-mode-hook
           (lambda ()
