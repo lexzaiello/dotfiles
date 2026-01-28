@@ -191,6 +191,7 @@ in {
                         spawn "${pkgs.emacs30}/bin/emacsclient --create-frame -e '(vterm (generate-new-buffer-name \"*vterm*\"))'")
                 , ((controlMask .|. shiftMask, xK_space), spawn "mydmenu_run")
                 , ((mod4Mask, xK_e), spawn "${pkgs.emacs30}/bin/emacsclient --create-frame ~/Documents/org/Todo.org")
+                , ((mod4Mask, xK_s), spawn "${pkgs.emacs30}/bin/emacsclient --create-frame ~/Documents/org/skills/Skills.org")
                 , ((mod4Mask, xK_f), sendMessage $ JumpToLayout "Full")
                 , ((mod4Mask, xK_n), windows focusDown)
                 , ((mod4Mask, xK_p), windows focusUp)
