@@ -76,64 +76,8 @@ in {
       (setq TeX-auto-save t)
       (setq TeX-parse-self t)
 
-      ;; --- PERFORMANCE TWEAKS FOR LEAN/LSP ---
-      ;; Prevents Emacs from pausing to garbage collect constantly while the timer runs.
       (setq gc-cons-threshold 100000000) ; 100MB
       (setq read-process-output-max (* 1024 1024)) ; 1MB
-
-      ;; --- THE SCRIPT ---
-
-      (defvar my/nag-timer nil
-        "Stores the active timer object so we can cancel/restart it cleanly.")
-
-      (defun my/hourly-prompt ()
-        "Prompts user. If Yes: open file + reset timer to 1hr. If No: retry in 5 mins."
-        (interactive)
-        ;; Check if we are in the middle of a command (prevents freezing)
-        (unless (active-minibuffer-window)
-          ;; 1. The Prompt (automatically focuses minibuffer)
-          (if (y-or-n-p "Hourly check-in: Have you consulted the manual? ")
-
-              ;; CASE: YES
-              (progn
-                (message "Good job!")
-                ;; Open the file
-                (find-file "~/Documents/org/skills/Skills.org")
-                (goto-char (point-max))
-                ;; Reset the timer to fire again in exactly 1 hour from NOW
-                (my/schedule-timer 3600))
-
-            ;; CASE: NO
-            (progn
-              (message "Okay. I will ask again in 5 minutes.")
-              ;; Schedule the timer to fire again in 5 minutes (300 seconds)
-              (my/schedule-timer 300)))))
-
-      (defun my/schedule-timer (seconds)
-        "Cancels any existing timer and starts a new one."
-        ;; Cancel the old one to ensure we never have 'ghost' timers slowing down Emacs
-        (when (timerp my/nag-timer)
-          (cancel-timer my/nag-timer))
-        ;; Create the new timer
-        (setq my/nag-timer 
-              (run-at-time (format "%d sec" seconds) nil #'my/hourly-prompt)))
-
-      (my/schedule-timer 3600)
-
-      (defun my/hourly-nag-with-snooze ()
-        "Prompt the user. If 'yes', open research file. If 'no', snooze for 5 mins."
-        (interactive)
-        (let ((research-file "~/Documents/org/skills/Skills.org"))
-          (if (y-or-n-p "Hourly check-in: Have you consulted the manual? ")
-              (progn
-                (find-file research-file)
-                (goto-char (point-max))
-                (message "Good job!" (file-name-nondiscard research-file)))
-            (progn
-              (message "I'll check back in 5 minutes.")
-              (run-at-time "5 min" nil #'my/hourly-nag-with-snooze)))))
-
-      (run-at-time "00:00" 7200 #'my/hourly-nag-with-snooze)
 
       (add-hook 'LaTeX-mode-hook
           (lambda ()
