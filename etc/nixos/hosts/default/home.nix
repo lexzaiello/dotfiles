@@ -149,7 +149,7 @@ in {
     llvm
     obs-studio
     tor-browser
-    kleopatra
+    kdePackages.kleopatra
     picom
     ghostscript
     tex
