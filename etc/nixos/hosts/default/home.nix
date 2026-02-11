@@ -148,6 +148,8 @@ in {
     gdb
     llvm
     obs-studio
+    tor-browser
+    kleopatra
     picom
     ghostscript
     tex
