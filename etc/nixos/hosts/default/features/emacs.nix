@@ -248,11 +248,11 @@ in {
       (custom-set-faces
        '(org-link ((t (:foreground "${colorscheme.palette.base04}" :underline t)))))
       (add-hook 'org-mode-hook (lambda ()
-        (set-face-attribute 'variable-pitch nil :family "Comic Neue" :height 140)
-        (set-face-attribute 'fixed-pitch nil :family "IosevkaTerm Nerd Font Mono" :height 140)
-        (set-face-attribute 'default nil :family "IosevkaTerm Nerd Font Mono" :height 140)
-        (set-face-attribute 'variable-pitch nil :family "Comic Neue" :height 140)
-        (set-face-attribute 'fixed-pitch nil :family "IosevkaTerm Nerd Font Mono" :height 140)
+        (set-face-attribute 'variable-pitch nil :family "Intel One Mono" :height 140)
+        (set-face-attribute 'fixed-pitch nil :family "Intel One Mono" :height 140)
+        (set-face-attribute 'default nil :family "Intel One Mono" :height 140)
+        (set-face-attribute 'variable-pitch nil :family "Intel One Mono" :height 140)
+        (set-face-attribute 'fixed-pitch nil :family "Intel One Mono" :height 140)
         (face-remap-add-relative 'default 'variable-pitch)
         (dolist (face '(org-level-1
                   org-level-2
@@ -297,7 +297,7 @@ in {
       (setq-default display-line-numbers-type 'relative)
       (global-display-line-numbers-mode)
       (add-hook 'prog-mode-hook (lambda ()
-                                (set-face-attribute 'fixed-pitch nil :font "IosevkaTerm Nerd Font Mono" :height 140)
+                                (set-face-attribute 'fixed-pitch nil :font "Intel One Mono" :height 140)
                                 (whitespace-mode)
                                 (line-number-mode)
                                 (column-number-mode)
@@ -346,7 +346,7 @@ in {
           ("\\.rasi\\'" . prog-mode)) auto-mode-alist))
       (add-to-list 'auto-mode-alist '("\\.lean\\'" . (lambda ()
                                                      (lean4-mode)
-                                                     (set-face-attribute 'fixed-pitch nil :font "IosevkaTerm Nerd Font Mono" :height 140)
+                                                     (set-face-attribute 'fixed-pitch nil :font "Intel One Mono" :height 140)
                                                      (whitespace-mode)
                                                      (line-number-mode)
                                                      (column-number-mode)
@@ -386,10 +386,10 @@ in {
       (require 'org-agenda)
       (find-file "~/Documents/org/Todo.org")
 
-      (set-face-attribute 'default nil :font "IosevkaTerm Nerd Font Mono" :height 140)
-      (set-face-attribute 'fixed-pitch nil :font "IosevkaTerm Nerd Font Mono" :height 140)
-      (set-face-attribute 'variable-pitch nil :font "Comic Neue" :height 140)
-      (setq initial-frame-alist '((font . "IosevkaTerm Nerd Font Mono")))
+      (set-face-attribute 'default nil :font "Intel One Mono" :height 140)
+      (set-face-attribute 'fixed-pitch nil :font "Intel One Mono" :height 140)
+      (set-face-attribute 'variable-pitch nil :font "Intel One Mono" :height 140)
+      (setq initial-frame-alist '((font . "Intel One Mono")))
 
       (with-eval-after-load 'tex
                             (add-to-list 'TeX-command-list

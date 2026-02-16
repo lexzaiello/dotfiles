@@ -1,2 +1,2 @@
-"IosevkaTerm Nerd Font Mono"
+"Intel One Mono"
 

@@ -115,6 +115,7 @@ in {
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    intel-one-mono
     nerd-fonts.monoid
     dmenu
     my_dmenu

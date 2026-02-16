@@ -51,6 +51,7 @@ in {
 
   fonts.packages = with pkgs; [
     comic-neue
+    intel-one-mono
     nerd-fonts.comic-shanns-mono
     font-awesome
     noto-fonts
