@@ -10,6 +10,7 @@ in {
     enable = true;
     extraPackages = epkgs:
       with epkgs; [
+        jinx
         vertico
         citar
         auctex
@@ -247,6 +248,7 @@ in {
       (set-cursor-color "${colorscheme.palette.base06}")
       (custom-set-faces
        '(org-link ((t (:foreground "${colorscheme.palette.base04}" :underline t)))))
+      (setq-default line-spacing 0.3)
       (add-hook 'org-mode-hook (lambda ()
         (set-face-attribute 'variable-pitch nil :family "Intel One Mono" :height 140)
         (set-face-attribute 'fixed-pitch nil :family "Intel One Mono" :height 140)
@@ -358,6 +360,7 @@ in {
                                                            (space-mark 160 [164] [95])
                                                            (newline-mark 10 [36 10])))
                                                      (lsp-mode)
+                                                     (jinx-mode)
                                                      (global-set-key (kbd "C-c C-i") 'lean4-toggle-info))))
 
       (setq lsp-file-watch-ignored
