@@ -360,7 +360,6 @@ in {
                                                            (space-mark 160 [164] [95])
                                                            (newline-mark 10 [36 10])))
                                                      (lsp-mode)
-                                                     (jinx-mode)
                                                      (global-set-key (kbd "C-c C-i") 'lean4-toggle-info))))
 
       (setq lsp-file-watch-ignored
