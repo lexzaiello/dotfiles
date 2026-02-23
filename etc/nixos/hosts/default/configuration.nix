@@ -16,6 +16,8 @@ in {
     "https://cache.iog.io"
   ];
 
+  boot.kernelParams = ["acpi_backlight=native"];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
