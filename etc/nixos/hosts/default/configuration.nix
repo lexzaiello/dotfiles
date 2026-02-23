@@ -16,7 +16,11 @@ in {
     "https://cache.iog.io"
   ];
 
-  boot.kernelParams = ["acpi_backlight=vendor"];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelParams = ["amdgpu.backlight=0" "amdgpu.abmlevel=0"];
+  hardware.enableRedistributableFirmware = true;
+
+  services.thermald.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
