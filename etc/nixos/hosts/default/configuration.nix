@@ -89,6 +89,7 @@ in {
     };
   };
   programs.nix-ld.enable = true;
+  programs.light.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -242,7 +243,7 @@ in {
   users.users.dowlandaiello = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" "docker" "podman" "dialout" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "podman" "dialout" "video" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.nushell;
     packages = with pkgs; [ ];
   };
