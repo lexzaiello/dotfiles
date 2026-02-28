@@ -116,6 +116,10 @@ in {
       vsync = true;
     };
   };
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+  };
   services.xserver = {
     enable = true;
 

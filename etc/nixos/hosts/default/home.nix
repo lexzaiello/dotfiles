@@ -152,7 +152,6 @@ in {
     kdePackages.kleopatra
     picom
     ghostscript
-    syncthing
     tex
     (rstudioWrapper.override {
       packages = with rPackages; [ Rmpfr readr dplyr tidyverse ];
