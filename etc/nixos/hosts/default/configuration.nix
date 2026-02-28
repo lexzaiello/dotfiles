@@ -256,6 +256,7 @@ in {
 
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    xorg.xbacklight
     zoom
     wget
     emacs
