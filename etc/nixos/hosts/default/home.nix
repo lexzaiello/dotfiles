@@ -153,9 +153,9 @@ in {
     picom
     ghostscript
     tex
-    agda
-    agdaPackages.cubical
-    agdaPackages.standard-library
+    (agda.withPackages (p: [
+      p.standard-library
+    ]))
     (rstudioWrapper.override {
       packages = with rPackages; [ Rmpfr readr dplyr tidyverse ];
     })

@@ -54,6 +54,7 @@ in {
         ace-jump-mode
         poly-R
         ess
+        agda2-mode
         (callPackage ./lean4-mode.nix {
           inherit (pkgs) fetchFromGitHub;
           inherit (pkgs.lib) fakeHash;
@@ -69,9 +70,6 @@ in {
       (menu-bar-mode -1)
       (require 'lean4-mode)
       (require 'ace-jump-mode)
-
-      (load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda --emacs-mode locate")))
 
       (setq-default line-spacing 0.1)
 
