@@ -154,7 +154,7 @@ in {
     ghostscript
     tex
     agda
-    cuical
+    cubical
     standard-library
     (rstudioWrapper.override {
       packages = with rPackages; [ Rmpfr readr dplyr tidyverse ];
