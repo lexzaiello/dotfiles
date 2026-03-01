@@ -153,6 +153,7 @@ in {
     picom
     ghostscript
     tex
+    agda
     (rstudioWrapper.override {
       packages = with rPackages; [ Rmpfr readr dplyr tidyverse ];
     })
