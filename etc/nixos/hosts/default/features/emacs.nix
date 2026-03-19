@@ -52,7 +52,6 @@ in {
         flycheck
         company-coq
         ace-jump-mode
-        poly-R
         ess
         agda2-mode
         (callPackage ./lean4-mode.nix {
