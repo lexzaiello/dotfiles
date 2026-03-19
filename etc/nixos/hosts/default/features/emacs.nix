@@ -40,6 +40,7 @@ in {
         counsel
         auto-virtualenv
         xclip
+        multimarkdown
         rust-mode
         direnv
         solidity-mode
