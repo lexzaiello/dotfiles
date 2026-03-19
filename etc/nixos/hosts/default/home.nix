@@ -116,6 +116,7 @@ in {
     #   echo "Hello, ${config.home.username}!"
     # '')
     pandoc
+    multimarkdown
     nerd-fonts.monoid
     dmenu
     my_dmenu
