@@ -299,6 +299,7 @@ in {
 
       (setq rust-format-on-save t)
       (setq-default display-line-numbers-type 'relative)
+      (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
       (global-display-line-numbers-mode)
       (add-hook 'prog-mode-hook (lambda ()
                                 (set-face-attribute 'fixed-pitch nil :font "IosevkaTerm Nerd Font Mono" :height 140)
