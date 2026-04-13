@@ -62,6 +62,8 @@ in {
         pdf-tools
       ];
     extraConfig = ''
+      (pdf-tools-install)
+      (setq pdf-view-use-scaling t)
       (vertico-mode)
       (scroll-bar-mode -1)
       (tool-bar-mode -1)
