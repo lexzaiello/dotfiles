@@ -113,81 +113,6 @@ in {
 
       (doom-modeline-mode 1)
 
-      (custom-set-faces
-        '(flycheck-fringe-error ((t (:foreground "#d9a9b2"))))
-        '(flycheck-fringe-warning ((t (:foreground "#d9a9b2"))))
-        '(flycheck-fringe-info ((t (:foreground "#d9a9b2"))))
-        '(default ((t (:foreground "${colorscheme.palette.base05}" :background "${colorscheme.palette.base00}" ))))
-        '(cursor ((t (:background "${colorscheme.palette.base06}" ))))
-        '(fringe ((t (:background "${colorscheme.palette.base07}" ))))
-        '(mode-line ((t (:foreground "${colorscheme.palette.base07}" :background "${colorscheme.palette.base01}" ))))
-        '(mode-line-inactive ((t (:foreground "${colorscheme.palette.base04}" :background "${colorscheme.palette.base07}" ))))
-        '(region ((t (:background "${colorscheme.palette.base02}" ))))
-        '(secondary-selection ((t (:background "${colorscheme.palette.base02}" ))))
-        '(font-lock-builtin-face ((t (:foreground "#a2a371" ))))
-        '(font-lock-comment-face ((t (:foreground "${colorscheme.palette.base03}" ))))
-        '(font-lock-function-name-face ((t (:foreground "${colorscheme.palette.base0D}" :bold t))))
-        '(font-lock-keyword-face ((t (:foreground "${colorscheme.palette.base0E}" ))))
-        '(font-lock-string-face ((t (:foreground "${colorscheme.palette.base0B}" ))))
-        '(font-lock-type-face ((t (:foreground "${colorscheme.palette.base0A}" ))))
-        '(font-lock-constant-face ((t (:foreground "${colorscheme.palette.base09}" ))))
-        '(font-lock-variable-name-face ((t (:foreground "${colorscheme.palette.base0D}" ))))
-        '(minibuffer-prompt ((t (:foreground "${colorscheme.palette.base01}" :bold t ))))
-        '(font-lock-warning-face ((t (:foreground "${colorscheme.palette.base04}" :bold t ))))
-        '(line-number ((t (:foreground "${colorscheme.palette.base04}" :background "${colorscheme.palette.base02}"))))
-        '(line-number-current-line ((t (:background "${colorscheme.palette.base04}" :foreground "${colorscheme.palette.base02}"))))
-        '(whitespace-space ((t (:background nil :foreground "${colorscheme.palette.base02}"))))
-        '(whitespace-tab ((t (:background nil :foreground "${colorscheme.palette.base02}"))))
-        '(whitespace-trailing ((t (:background "${colorscheme.palette.base02}" :foreground "#ffffff" :weight bold))))
-        '(isearch ((t (:background "${colorscheme.palette.base02}" ))))
-        '(swiper-line-face ((t (:background "${colorscheme.palette.base02}" ))))
-        '(swiper-match-face-1 ((t (:background "${colorscheme.palette.base02}" ))))
-        '(swiper-match-face-2/3/4 ((t (:background "${colorscheme.palette.base02}" ))))
-        '(lazy-highlight ((t (:background "${colorscheme.palette.base02}" ))))
-        '(match ((t (:background "${colorscheme.palette.base02}"))))
-        '(ivy-current-match ((t (:background "${colorscheme.palette.base02}" :weight bold))))
-        '(ivy-minibuffer-match-face-1 ((t (:"${colorscheme.palette.base02}" "#ffe0f0"))))
-        '(ivy-minibuffer-match-face-2 ((t (:background "${colorscheme.palette.base02}"))))
-        '(ivy-minibuffer-match-face-3 ((t (:background "${colorscheme.palette.base02}"))))
-        '(ivy-minibuffer-match-face-4 ((t (:background "${colorscheme.palette.base02}"))))
-        ;; Set base vterm text/background
-        '(vterm ((t (:foreground "${colorscheme.palette.base01}" :background "${colorscheme.palette.base00}"))))
-        ;; ANSI color remapping
-        '(vterm-color-black   ((t (:foreground "${colorscheme.palette.base01}" :background "${colorscheme.palette.base01}"))))
-        '(vterm-color-red     ((t (:foreground "#6b595c" :background "#6b595c"))))
-        '(vterm-color-green   ((t (:foreground "#8f9e88" :background "#8f9e88"))))
-        '(vterm-color-yellow  ((t (:foreground "#d1c6ab" :background "#d1c6ab"))))
-        '(vterm-color-blue    ((t (:foreground "#5d5a6e" :background "#5d5a6e"))))
-        '(vterm-color-magenta ((t (:foreground "#755a69" :background "#755a69"))))
-        '(vterm-color-cyan    ((t (:foreground "#525d63" :background "#525d63"))))
-        '(vterm-color-bright-red     ((t (:foreground "#9c767d" :background "#9c767d"))))
-        '(vterm-color-bright-green   ((t (:foreground "#9ab38f" :background "#9ab38f"))))
-        '(vterm-color-bright-yellow  ((t (:foreground "#d1c6ab" :background "#d1c6ab"))))
-        '(vterm-color-bright-blue    ((t (:foreground "#5d5a6e" :background "#5d5a6e"))))
-        '(vterm-color-bright-magenta ((t (:foreground "#755a69" :background "#755a69"))))
-        '(vterm-color-bright-cyan    ((t (:foreground "#525d63" :background "#525d63"))))
-        '(vterm-color-white   ((t (:foreground "${colorscheme.palette.base00}" :background "${colorscheme.palette.base00}"))))
-        '(doom-modeline-buffer-path
-          ((t (:foreground "${colorscheme.palette.base02}" :weight bold))))
-        '(doom-modeline-project-dir
-          ((t (:foreground "${colorscheme.palette.base02}" :weight bold))))
-        '(doom-modeline-major-mode
-          ((t (:foreground "${colorscheme.palette.base02}" :weight bold))))
-        '(doom-modeline-minor-modes
-          ((t (:foreground "#d9a9b2" :weight semi-bold))))
-        '(doom-modeline-buffer-modified
-          ((t (:foreground "#d9a9b2" :weight bold))))
-        '(doom-modeline-buffer-state
-          ((t (:foreground "#d9a9b2" :weight bold))))
-        '(doom-modeline-info
-          ((t (:foreground "#d9a9b2" :weight semi-bold))))
-        '(window-divider ((t (:foreground "${colorscheme.palette.base07}" :background "${colorscheme.palette.base01}"))))
-        '(window-divider-first-pixel ((t (:foreground "${colorscheme.palette.base07}" :background "${colorscheme.palette.base01}"))))
-        '(window-divider-last-pixel ((t (:foreground "${colorscheme.palette.base07}" :background "${colorscheme.palette.base01}"))))
-        '(doom-modeline-error ((t (:foreground "#d9a9b2"))))
-        '(doom-modeline-warning ((t (:foreground "#d9a9b2"))))
-        '(lsp-face-highlight-textual ((t (:foreground "${colorscheme.palette.base04}" :background "${colorscheme.palette.base02}")))))
-
       (setq lsp-headerline-breadcrumb-enable nil)
       (lsp-headerline-breadcrumb-mode -1)
 
@@ -224,6 +149,9 @@ in {
       (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
       (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
+      (require-theme 'modus-themes)
+      (load-theme 'modus-operandi-tinted)
+
       (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
       (add-hook 'haskell-mode-hook (lambda ()
                                    (lsp-deferred)))
@@ -247,9 +175,6 @@ in {
         org-pretty-entities t
         org-agenda-tags-column 0
         org-ellipsis "…")
-      (set-cursor-color "${colorscheme.palette.base06}")
-      (custom-set-faces
-       '(org-link ((t (:foreground "${colorscheme.palette.base04}" :underline t)))))
       (setq-default line-spacing 0.3)
       (add-hook 'org-mode-hook (lambda ()
         (set-face-attribute 'variable-pitch nil :family "Comic Neue" :height 140)
@@ -272,21 +197,7 @@ in {
                   org-meta-line
                   org-drawer
                   org-quote))
-                  (set-face-attribute face nil :inherit 'variable-pitch))
-        (custom-set-faces
-          '(org-level-1 ((t (:inherit variable-pitch :weight bold :height 1.5))))
-          '(org-level-2 ((t (:inherit variable-pitch :weight bold :height 1.4))))
-          '(org-level-3 ((t (:inherit variable-pitch :weight semi-bold :height 1.3))))
-          '(org-block ((t (:inherit fixed-pitch :background "${colorscheme.palette.base02}" :foreground "${colorscheme.palette.base04}"))))
-          '(org-block-begin-line ((t (:inherit fixed-pitch :background "${colorscheme.palette.base07}" :foreground "${colorscheme.palette.base01}" :slant italic))))
-          '(org-block-end-line ((t (:inherit fixed-pitch :background "${colorscheme.palette.base07}" :foreground "${colorscheme.palette.base01}" :slant italic))))
-          '(org-todo ((t (:inherit fixed-pitch :background "${colorscheme.palette.base02}" :foreground "${colorscheme.palette.base04}" :weight bold))))
-          '(org-table ((t (:inherit fixed-pitch :foreground "${colorscheme.palette.base01}"))))
-          '(org-done ((t (:inherit fixed-pitch :background "${colorscheme.palette.base02}" :foreground "${colorscheme.palette.base04}" :weight semi-bold))))
-          '(org-agenda-structure ((t (:foreground "${colorscheme.palette.base04}"}))))
-          '(org-agenda-date ((t (:foreground "${colorscheme.palette.base04}"}))))
-          '(org-agenda-date-today ((t (:foreground "${colorscheme.palette.base04}" :weight bold :slant italic))))
-          '(org-agenda-todo ((t (:foreground "${colorscheme.palette.base02}")))))
+                  (set-face-attribute face nil :inherit 'variable-pitch)))
         (setq org-cycle-separator-lines 2)
 
         (org-superstar-mode 1)
