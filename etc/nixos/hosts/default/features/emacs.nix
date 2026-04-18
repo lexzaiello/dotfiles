@@ -79,8 +79,8 @@ in {
       (setq TeX-auto-save t)
       (setq TeX-parse-self t)
 
-      (setq gc-cons-threshold 100000000) ; 100MB
-      (setq read-process-output-max (* 1024 1024)) ; 1MB
+      (setq gc-cons-threshold 100000000)
+      (setq read-process-output-max (* 1024 1024))
 
       (add-hook 'LaTeX-mode-hook
           (lambda ()
@@ -88,7 +88,6 @@ in {
 
       (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
-      (setq gc-cons-threshold (* 100 1024 1024))
       (setq gc-cons-percentage 0.1)
 
       (add-to-list 'default-frame-alist '(inhibit-double-buffering . nil))
@@ -140,7 +139,6 @@ in {
       (setq window-divider-default-right-width 2 window-divider-default-bottom-width 2)
 
       (setq vterm-max-scrollback 10000)
-      (setq read-process-output-max (* 1024 1024)) ;; 1mb
       (setq vterm-shell "nu")
       (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "dumb")))
       (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
