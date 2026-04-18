@@ -305,6 +305,14 @@ in {
                             '("NixBuild" "nix build"
                             TeX-run-command nil t :help "Run project-specific Nix build")
                             t))
+
+      (defun my/force-theme-on-window (frame)
+             (with-selected-frame frame
+               (mapc #'disable-theme custom-enabled-themes)
+               (load-theme 'modus-operandi-tinted t)))
+      (add-hook 'after-make-frame-functions #'my/force-theme-on-window)
+      (mapc #'disable-theme custom-enabled-themes)
+      (setq inhibit-x-resources t)
     '';
   };
   services.emacs = {
