@@ -70,7 +70,8 @@ in {
       (require 'lean4-mode)
       (require 'ace-jump-mode)
 
-      (load-theme 'modus-operandi-tinted)
+      (require-theme 'modus-themes)
+      (load-theme 'modus-operandi-tinted t)
 
       (setq-default line-spacing 0.1)
 
