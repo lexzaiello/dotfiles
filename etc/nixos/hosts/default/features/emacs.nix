@@ -149,9 +149,6 @@ in {
       (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
       (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
-      (require-theme 'modus-themes)
-      (load-theme 'modus-operandi-tinted)
-
       (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
       (add-hook 'haskell-mode-hook (lambda ()
                                    (lsp-deferred)))
@@ -197,8 +194,15 @@ in {
                   org-meta-line
                   org-drawer
                   org-quote))
-                  (set-face-attribute face nil :inherit 'variable-pitch)))
+                  (set-face-attribute face nil :inherit 'variable-pitch))
+        (custom-set-faces
+          '(org-level-1 ((t (:inherit variable-pitch :weight bold :height 1.5))))
+          '(org-level-2 ((t (:inherit variable-pitch :weight bold :height 1.4))))
+          '(org-level-3 ((t (:inherit variable-pitch :weight semi-bold :height 1.3)))))
         (setq org-cycle-separator-lines 2)
+
+        (require-theme 'modus-themes)
+        (load-theme 'modus-operandi-tinted)
 
         (org-superstar-mode 1)
         (org-indent-mode 1)
