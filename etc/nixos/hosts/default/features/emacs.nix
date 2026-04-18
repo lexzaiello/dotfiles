@@ -15,7 +15,6 @@ in {
         citar
         auctex
         consult
-        modus-themes
         nix-mode
         nix-sandbox
         vterm
@@ -116,9 +115,6 @@ in {
       (setq lsp-headerline-breadcrumb-enable nil)
       (lsp-headerline-breadcrumb-mode -1)
 
-      (setq nerd-icons-color-icons nil)
-      (setq doom-modeline-major-mode-color-icon nil)
-
       (setq scroll-margin 3)
       (setq scroll-conservatively 100000)
       (setq scroll-preserve-screen-position 1)
@@ -195,10 +191,6 @@ in {
                   org-drawer
                   org-quote))
                   (set-face-attribute face nil :inherit 'variable-pitch))
-        (custom-set-faces
-          '(org-level-1 ((t (:inherit variable-pitch :weight bold :height 1.5))))
-          '(org-level-2 ((t (:inherit variable-pitch :weight bold :height 1.4))))
-          '(org-level-3 ((t (:inherit variable-pitch :weight semi-bold :height 1.3)))))
         (setq org-cycle-separator-lines 2)
 
         (require-theme 'modus-themes)
