@@ -1,7 +1,6 @@
 { pkgs, inputs, ... }:
 
 let
-  colorscheme = import ./colorscheme.nix;
   system = "x86_64-linux";
   font = import ./font.nix;
   lib = inputs.nixpkgs.lib;
@@ -18,6 +17,7 @@ in {
         nix-mode
         nix-sandbox
         vterm
+        modus-themes
         python-mode
         python-black
         lsp-mode
@@ -70,7 +70,6 @@ in {
       (require 'lean4-mode)
       (require 'ace-jump-mode)
 
-      (require-theme 'modus-themes)
       (load-theme 'modus-operandi-tinted)
 
       (setq-default line-spacing 0.1)
