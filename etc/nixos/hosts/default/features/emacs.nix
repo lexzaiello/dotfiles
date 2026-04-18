@@ -302,7 +302,7 @@ in {
       (setq xclip-mode t)
       (setq xclip-method (quote wl-copy))
 
-      (setq org-agenda-files '("~/Documents/org/Todo.org" "~/Documents/org/BimboDiscipline.org"))
+      (setq org-agenda-files '("~/Documents/org/Todo.org"))
       (require 'org-agenda)
       (find-file "~/Documents/org/Todo.org")
 
