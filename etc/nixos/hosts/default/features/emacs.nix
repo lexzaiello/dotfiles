@@ -42,7 +42,6 @@ in {
         rust-mode
         direnv
         solidity-mode
-        base16-theme
         web-mode
         typescript-mode
         prettier-js
@@ -70,6 +69,9 @@ in {
       (menu-bar-mode -1)
       (require 'lean4-mode)
       (require 'ace-jump-mode)
+
+      (require-theme 'modus-themes)
+      (load-theme 'modus-operandi-tinted)
 
       (setq-default line-spacing 0.1)
 
@@ -192,9 +194,6 @@ in {
                   org-quote))
                   (set-face-attribute face nil :inherit 'variable-pitch))
         (setq org-cycle-separator-lines 2)
-
-        (require-theme 'modus-themes)
-        (load-theme 'modus-operandi-tinted)
 
         (org-superstar-mode 1)
         (org-indent-mode 1)
