@@ -13,10 +13,10 @@ in {
         citar
         auctex
         consult
+        base16-theme
         nix-mode
         nix-sandbox
         vterm
-        modus-themes
         python-mode
         python-black
         lsp-mode
@@ -301,17 +301,7 @@ in {
                             '("NixBuild" "nix build"
                             TeX-run-command nil t :help "Run project-specific Nix build")
                             t))
-
-      (defun my/force-theme-on-window (frame)
-             (with-selected-frame frame
-               (mapc #'disable-theme custom-enabled-themes)
-               (load-theme 'modus-operandi-tinted t)))
-      (add-hook 'after-make-frame-functions #'my/force-theme-on-window)
-      (mapc #'disable-theme custom-enabled-themes)
-      (setq inhibit-x-resources t)
-      (setq custom-file (make-temp-name (concat temporary-file-directory "emacs-custom-")))
-      (require-theme 'modus-themes)
-      (load-theme 'modus-operandi-tinted t)
+      (load-theme 'base16-gruvbox-light t)
     '';
   };
   services.emacs = {

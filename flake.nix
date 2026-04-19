@@ -5,6 +5,10 @@
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,7 +16,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/43ffe9ac82567512abb83187cb673de1091bdfa8";
   };
 
-  outputs = inputs@{ nixpkgs, ... }: let
+  outputs = inputs@{ nixpkgs, stylix, ... }: let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
     pkgs = import nixpkgs {
@@ -35,6 +39,7 @@
         modules = [
           defaultModule
           inputs.nixos-hardware.nixosModules.framework-16-7040-amd
+          stylix.nixosModules.stylix
         ];
       }).config.system.build.toplevel;
     };

@@ -1,7 +1,6 @@
 args@{ pkgs, lib, ... }:
 
 let
-  colorscheme = import ./features/colorscheme.nix;
   system = "x86_64-linux";
   mk_auto_randr_config = (port: ''
     output eDP
@@ -49,8 +48,6 @@ in {
   imports = [
     (import ./features/xdg.nix)
     (import ./features/alacritty.nix args)
-    (import ./features/gtk.nix args)
-    (import ./features/qt.nix args)
     (import ./features/zsh.nix args)
     (import ./features/emacs.nix args)
     (import ./features/git.nix)
@@ -58,14 +55,12 @@ in {
     (import ./features/nushell.nix args)
     (import ./features/polybar.nix args)
   ];
-
-  dconf = {
-    enable = true;
-
-    settings = {
-      "org/gnome/desktop/interface" = { color-scheme = "prefer-light"; };
-    };
-  };
+  stylix.enable = true;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-light.yaml";
+  stylix.targets.emacs.colors.enable = true;
+  stylix.targets.rofi.colors.enable = true;
+  stylix.targets.gnome.colors.enable = true;
+  stylix.targets.gtk.colors.enable = true;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -92,10 +87,6 @@ in {
       #(setq org-latex-compiler "lualatex")
       #(setq org-preview-latex-default-process 'dvisvgm)
     });
-    my_dmenu = pkgs.writeShellScriptBin "mydmenu_run" ''
-      #!/bin/sh
-      dmenu_run  -nb "${colorscheme.palette.base00}" -nf "${colorscheme.palette.base01}" -sf "${colorscheme.palette.base00}" -sb "${colorscheme.palette.base01}"
-    '';
   in with pkgs; [
     kdePackages.okular
     cachix
@@ -118,8 +109,6 @@ in {
     pandoc
     multimarkdown
     nerd-fonts.monoid
-    dmenu
-    my_dmenu
     feh
     gruvbox-gtk-theme
     zsh-syntax-highlighting

@@ -1,4 +1,4 @@
-args@{ lib, pkgs, inputs, ... }:
+args@{ config, lib, pkgs, inputs, ... }:
 
 let
   system = "x86_64-linux";
@@ -15,6 +15,9 @@ in {
   nix.settings.substituters = [
     "https://cache.iog.io"
   ];
+
+  stylix.enable = true;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-light.yaml";
 
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelParams = ["amdgpu.backlight=0" "amdgpu.abmlevel=0"];
@@ -130,9 +133,7 @@ in {
     videoDrivers = [ "amdgpu" ];
 
     windowManager = {
-      xmonad =
-        let colorScheme = import ./features/colorscheme.nix;
-        in {
+      xmonad = {
           enable = true;
           enableContribAndExtras = true;
           config = pkgs.writeText "xmonad.hs" ''
@@ -156,23 +157,19 @@ in {
             import XMonad.StackSet
 
             myTheme = def {
-              activeColor           = "${colorScheme.palette.base06}"
-              , inactiveColor       = "${colorScheme.palette.base02}"
-              , urgentColor         = "${colorScheme.palette.base06}"
-              , activeBorderColor   = "${colorScheme.palette.base01}"
-              , inactiveBorderColor = "${colorScheme.palette.base02}"
-              , urgentBorderColor   = "${colorScheme.palette.base05}"
-              , activeBorderWidth   = 2
-              , inactiveBorderWidth = 1
-              , urgentBorderWidth   = 2
-              , activeTextColor     = "${colorScheme.palette.base00}"
-              , inactiveTextColor   = "${colorScheme.palette.base06}"
-              , urgentTextColor     = "${colorScheme.palette.base06}"
-              , fontName            = "${import ./features/font.nix}"
-              , decoWidth           = 0
-              , decoHeight          = 0
-              , windowTitleAddons   = []
-              , windowTitleIcons    = []
+               activeColor           = "${config.lib.stylix.colors.base00}"
+               , inactiveColor       = "${config.lib.stylix.colors.base0D}"
+               , urgentColor         = "${config.lib.stylix.colors.base06}"
+               , activeBorderColor   = "${config.lib.stylix.colors.base01}"
+               , inactiveBorderColor = "${config.lib.stylix.colors.base02}"
+               , urgentBorderColor   = "${config.lib.stylix.colors.base05}"
+               , activeBorderWidth   = 2
+               , urgentBorderWidth   = 2
+               , fontName            = "${import ./features/font.nix}"
+               , decoWidth           = 0
+               , decoHeight          = 0
+               , windowTitleAddons   = []
+               , windowTitleIcons    = []
             }
 
             myLayout = avoidStruts $ tiled
@@ -194,12 +191,10 @@ in {
                 , startupHook = myStartupHook
                 , layoutHook = myLayout
                 , borderWidth = 1
-                , normalBorderColor = "${colorScheme.palette.base02}"
-                , focusedBorderColor = "${colorScheme.palette.base04}"
                 } `additionalKeys` [
                 ((mod4Mask, xK_Return),
                         spawn "${pkgs.emacs30}/bin/emacsclient --create-frame -e '(vterm (generate-new-buffer-name \"*vterm*\"))'")
-                , ((controlMask .|. shiftMask, xK_space), spawn "mydmenu_run")
+                , ((controlMask .|. shiftMask, xK_space), spawn "rofi -show run")
                 , ((mod4Mask, xK_e), spawn "${pkgs.emacs30}/bin/emacsclient --create-frame ~/Documents/org/Todo.org")
                 , ((mod4Mask, xK_s), spawn "${pkgs.emacs30}/bin/emacsclient --create-frame ~/Documents/org/skills/Skills.org")
                 , ((mod4Mask, xK_f), sendMessage $ JumpToLayout "Full")
@@ -259,6 +254,7 @@ in {
 
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    rofi
     xorg.xbacklight
     wget
     emacs
