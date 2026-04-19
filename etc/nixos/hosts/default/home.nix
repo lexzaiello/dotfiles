@@ -138,8 +138,6 @@ in {
     docker-compose
     protobuf
     discord
-    nodePackages.typescript-language-server
-    typescript
     signal-desktop
     obsidian
     chromium
