@@ -182,7 +182,7 @@ in {
 
             myStartupHook :: X ()
             myStartupHook = do
-              spawnOnce "${pkgs.feh}/bin/feh --bg-scale ~/Pictures/wallpapers/bruh.png"
+              spawnOnce "${pkgs.feh}/bin/feh --bg-scale ~/Pictures/wallpapers/bruh.jpg"
               spawnOnce "${pkgs.polybar}/bin/polybar main >>/home/dowlandaiello/.config/polybar/logfile 2>&1"
 
             main = xmonad $ docks $ ewmhFullscreen $ ewmh $ def
