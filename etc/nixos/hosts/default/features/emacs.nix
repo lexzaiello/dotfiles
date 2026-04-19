@@ -59,6 +59,16 @@ in {
         pdf-tools
       ];
     extraConfig = ''
+      (setq inhibit-x-resources t)
+      (setq site-run-file nil)
+      (setq custom-file (make-temp-name "/tmp/emacs-custom-"))
+      (set-face-attribute 'default nil 
+                          :background "#000000" 
+                          :foreground "#ffffff"
+                          :weight 'normal
+                          :slant 'normal
+                          :width 'normal
+                          :family "unspecified")
       (pdf-tools-install)
       (setq pdf-view-use-scaling t)
       (vertico-mode)
