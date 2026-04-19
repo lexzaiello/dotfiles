@@ -197,12 +197,13 @@ in {
         (prettify-symbols-mode 1)
       ))
 
+      (set-frame-font "IosevkaTerm Nerd Font Mono 140" nil t)
+
       (setq rust-format-on-save t)
       (setq-default display-line-numbers-type 'relative)
       (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
       (global-display-line-numbers-mode)
       (add-hook 'prog-mode-hook (lambda ()
-                                (set-face-attribute 'fixed-pitch nil :font "IosevkaTerm Nerd Font Mono" :height 140)
                                 (whitespace-mode)
                                 (line-number-mode)
                                 (column-number-mode)
@@ -251,7 +252,6 @@ in {
           ("\\.rasi\\'" . prog-mode)) auto-mode-alist))
       (add-to-list 'auto-mode-alist '("\\.lean\\'" . (lambda ()
                                                      (lean4-mode)
-                                                     (set-face-attribute 'fixed-pitch nil :font "IosevkaTerm Nerd Font Mono" :height 140)
                                                      (whitespace-mode)
                                                      (line-number-mode)
                                                      (column-number-mode)
@@ -291,10 +291,7 @@ in {
       (require 'org-agenda)
       (find-file "~/Documents/org/Todo.org")
 
-      (set-face-attribute 'default nil :font "IosevkaTerm Nerd Font Mono" :height 140)
-      (set-face-attribute 'fixed-pitch nil :font "IosevkaTerm Nerd Font Mono" :height 140)
       (set-face-attribute 'variable-pitch nil :font "Comic Neue" :height 140)
-      (setq initial-frame-alist '((font . "IosevkaTerm Nerd Font Mono")))
 
       (with-eval-after-load 'tex
                             (add-to-list 'TeX-command-list
