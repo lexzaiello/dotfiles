@@ -304,12 +304,12 @@ in {
                             t))
       (load-theme 'base16-gruvbox-light t)
       (set-face-attribute 'window-divider nil
-                    :foreground "#d4c5b9"
+                    :foreground "#D5C4A1"
                     :background nil)
       (set-face-attribute 'window-divider-first-pixel nil
-                    :foreground "#d4c5b9")
+                    :foreground "#D5C4A1")
       (set-face-attribute 'window-divider-last-pixel nil
-                    :foreground "#d4c5b9")
+                    :foreground "#D5C4A1")
     '';
   };
   services.emacs = {
