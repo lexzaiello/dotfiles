@@ -70,9 +70,6 @@ in {
       (require 'lean4-mode)
       (require 'ace-jump-mode)
 
-      (require-theme 'modus-themes)
-      (load-theme 'modus-operandi-tinted t)
-
       (setq-default line-spacing 0.1)
 
       (load "auctex.el" nil t t)
@@ -314,6 +311,8 @@ in {
       (mapc #'disable-theme custom-enabled-themes)
       (setq inhibit-x-resources t)
       (setq custom-file (make-temp-name (concat temporary-file-directory "emacs-custom-")))
+      (require-theme 'modus-themes)
+      (load-theme 'modus-operandi-tinted t)
     '';
   };
   services.emacs = {
