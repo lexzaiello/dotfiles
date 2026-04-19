@@ -111,7 +111,7 @@ in {
       active-opacity = 1.0;
       frame-opacity = 1.0;
       inactive-opacity-override = true;
-      round-borders = 1;
+      round-borders = 0;
       blur-background = true;
       blur-method = "dual_kawase";
       blur-strength = 7;
