@@ -56,6 +56,7 @@ in {
     (import ./features/polybar.nix args)
   ];
   stylix.enable = true;
+  stylix.fonts.sizes.applications = 9;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-light.yaml";
   stylix.targets.emacs.colors.enable = true;
   stylix.targets.rofi.colors.enable = true;
