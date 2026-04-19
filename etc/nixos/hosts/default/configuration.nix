@@ -191,8 +191,8 @@ in {
                 , startupHook = myStartupHook
                 , layoutHook = myLayout
                 , borderWidth = 1
-                , focusedBorderColor = "${config.lib.stylix.colors.base0D}"
-                , normalBorderColor  = "${config.lib.stylix.colors.base01}"
+                , focusedBorderColor = "#${config.lib.stylix.colors.base0D}"
+                , normalBorderColor  = "#${config.lib.stylix.colors.base01}"
                 } `additionalKeys` [
                 ((mod4Mask, xK_Return),
                         spawn "${pkgs.emacs30}/bin/emacsclient --create-frame -e '(vterm (generate-new-buffer-name \"*vterm*\"))'")
