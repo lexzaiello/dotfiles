@@ -277,6 +277,10 @@ in {
           "[/\\\\]\\.stack-work$"
           "[/\\\\]\\.nix$"
           "[/\\\\]\\.venv$"
+          "[/\\\\]\\.lake\\'"
+          "[/\\\\]build\\'"
+          "[/\\\\]result\\'"
+          "[/\\\\]result-\\*\\'"
           "[/\\\\]node_modules$"))
 
       ;; Buffer stuff
