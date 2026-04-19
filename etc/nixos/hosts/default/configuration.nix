@@ -157,10 +157,10 @@ in {
             import XMonad.StackSet
 
             myTheme = def {
-               activeColor           = "#${config.lib.stylix.colors.base0D}"
+               activeColor           = "#${config.lib.stylix.colors.base0F}"
                , inactiveColor       = "#${config.lib.stylix.colors.base01}"
                , urgentColor         = "#${config.lib.stylix.colors.base09}"
-               , activeBorderColor   = "#${config.lib.stylix.colors.base0D}"
+               , activeBorderColor   = "#${config.lib.stylix.colors.base0F}"
                , inactiveBorderColor = "#${config.lib.stylix.colors.base01}"
                , urgentBorderColor   = "#${config.lib.stylix.colors.base09}"
                , activeBorderWidth   = 2
@@ -190,8 +190,8 @@ in {
                 , modMask     = mod4Mask
                 , startupHook = myStartupHook
                 , layoutHook = myLayout
-                , borderWidth = 1
-                , focusedBorderColor = "#${config.lib.stylix.colors.base0D}"
+                , borderWidth = 2
+                , focusedBorderColor = "#${config.lib.stylix.colors.base0F}"
                 , normalBorderColor  = "#${config.lib.stylix.colors.base01}"
                 } `additionalKeys` [
                 ((mod4Mask, xK_Return),
