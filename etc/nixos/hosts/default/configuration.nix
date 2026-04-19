@@ -157,10 +157,10 @@ in {
             import XMonad.StackSet
 
             myTheme = def {
-               activeColor           = "${config.lib.stylix.colors.base00}"
+               activeColor           = "${config.lib.stylix.colors.base0D}"
                , inactiveColor       = "${config.lib.stylix.colors.base01}"
                , urgentColor         = "${config.lib.stylix.colors.base09}"
-               , activeBorderColor   = "${config.lib.stylix.colors.base00}"
+               , activeBorderColor   = "${config.lib.stylix.colors.base0D}"
                , inactiveBorderColor = "${config.lib.stylix.colors.base01}"
                , urgentBorderColor   = "${config.lib.stylix.colors.base09}"
                , activeBorderWidth   = 2
@@ -191,6 +191,8 @@ in {
                 , startupHook = myStartupHook
                 , layoutHook = myLayout
                 , borderWidth = 1
+                , focusedBorderColor = "${config.lib.stylix.colors.base0D}"
+                , normalBorderColor  = "${config.lib.stylix.colors.base01}"
                 } `additionalKeys` [
                 ((mod4Mask, xK_Return),
                         spawn "${pkgs.emacs30}/bin/emacsclient --create-frame -e '(vterm (generate-new-buffer-name \"*vterm*\"))'")
