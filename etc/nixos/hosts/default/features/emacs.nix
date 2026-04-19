@@ -222,16 +222,9 @@ in {
       (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
       (global-display-line-numbers-mode)
       (add-hook 'prog-mode-hook (lambda ()
-                                (whitespace-mode)
                                 (line-number-mode)
                                 (column-number-mode)
-                                (setq display-line-numbers 'relative)
-                                (setq whitespace-style '(face spaces space-mark tabs tab-mark trailing))
-                                (setq whitespace-display-mappings
-                                      '((tab-mark 9 [124 9] [92 9])
-                                      (space-mark 32 [183] [46])
-                                      (space-mark 160 [164] [95])
-                                      (newline-mark 10 [36 10])))))
+                                (setq display-line-numbers 'relative)))
 
       ;; Flycheck
       (global-flycheck-mode)
@@ -270,16 +263,9 @@ in {
           ("\\.rasi\\'" . prog-mode)) auto-mode-alist))
       (add-to-list 'auto-mode-alist '("\\.lean\\'" . (lambda ()
                                                      (lean4-mode)
-                                                     (whitespace-mode)
                                                      (line-number-mode)
                                                      (column-number-mode)
                                                      (setq display-line-numbers 'relative)
-                                                     (setq whitespace-style '(face spaces space-mark tabs tab-mark trailing))
-                                                     (setq whitespace-display-mappings
-                                                           '((tab-mark 9 [124 9] [92 9])
-                                                           (space-mark 32 [183] [46])
-                                                           (space-mark 160 [164] [95])
-                                                           (newline-mark 10 [36 10])))
                                                      (lsp-mode)
                                                      (global-set-key (kbd "C-c C-i") 'lean4-toggle-info))))
 
