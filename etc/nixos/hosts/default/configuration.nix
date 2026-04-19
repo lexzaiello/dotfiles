@@ -177,7 +177,7 @@ in {
               ||| noBorders (tabbed shrinkText myTheme)
               ||| floating
               where
-                tiled = gaps [(U,10),(D,10),(L,10),(R,10)] $ spacing 8 $ tallDefault shrinkText myTheme
+                tiled = gaps [(U,0),(D,0),(L,0),(R,0)] $ spacing 0 $ tallDefault shrinkText myTheme
                 floating = floatSimple shrinkText myTheme
 
             myStartupHook :: X ()
