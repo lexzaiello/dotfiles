@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       terminal.shell.program = "zsh";
-      font.size = 10;
+      font.size = 9;
     };
   };
 }
