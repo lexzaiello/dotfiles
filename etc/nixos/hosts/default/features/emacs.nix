@@ -69,6 +69,10 @@ in {
                           :slant 'normal
                           :width 'normal
                           :family "unspecified")
+      (add-to-list 'after-make-frame-functions
+                   (lambda (frame)
+                     (with-selected-frame frame
+                       (set-face-attribute 'default nil :background "#000000"))))
       (pdf-tools-install)
       (setq pdf-view-use-scaling t)
       (vertico-mode)
