@@ -157,12 +157,12 @@ in {
             import XMonad.StackSet
 
             myTheme = def {
-               activeColor           = "${config.lib.stylix.colors.base0D}"
-               , inactiveColor       = "${config.lib.stylix.colors.base01}"
-               , urgentColor         = "${config.lib.stylix.colors.base09}"
-               , activeBorderColor   = "${config.lib.stylix.colors.base0D}"
-               , inactiveBorderColor = "${config.lib.stylix.colors.base01}"
-               , urgentBorderColor   = "${config.lib.stylix.colors.base09}"
+               activeColor           = "#${config.lib.stylix.colors.base0D}"
+               , inactiveColor       = "#${config.lib.stylix.colors.base01}"
+               , urgentColor         = "#${config.lib.stylix.colors.base09}"
+               , activeBorderColor   = "#${config.lib.stylix.colors.base0D}"
+               , inactiveBorderColor = "#${config.lib.stylix.colors.base01}"
+               , urgentBorderColor   = "#${config.lib.stylix.colors.base09}"
                , activeBorderWidth   = 2
                , urgentBorderWidth   = 2
                , fontName            = "${import ./features/font.nix}"
