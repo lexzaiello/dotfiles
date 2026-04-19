@@ -47,7 +47,6 @@ in {
   };
   imports = [
     (import ./features/xdg.nix)
-    (import ./features/alacritty.nix args)
     (import ./features/zsh.nix args)
     (import ./features/emacs.nix args)
     (import ./features/git.nix)
@@ -58,6 +57,7 @@ in {
   stylix.enable = true;
   stylix.fonts.sizes.applications = 9;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-light.yaml";
+  stylix.targets.alacritty.colors.enable = true;
   stylix.targets.emacs.colors.enable = true;
   stylix.targets.rofi.colors.enable = true;
   stylix.targets.gnome.colors.enable = true;
