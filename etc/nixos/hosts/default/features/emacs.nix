@@ -151,7 +151,7 @@ in {
 
       (set-fringe-mode 0)
       (window-divider-mode +1)
-      (setq window-divider-default-right-width 2 window-divider-default-bottom-width 2)
+      (setq window-divider-default-right-width 1 window-divider-default-bottom-width 1)
 
       (setq vterm-max-scrollback 10000)
       (setq vterm-shell "nu")
@@ -303,6 +303,13 @@ in {
                             TeX-run-command nil t :help "Run project-specific Nix build")
                             t))
       (load-theme 'base16-gruvbox-light t)
+      (set-face-attribute 'window-divider nil
+                    :foreground "#d4c5b9"
+                    :background nil)
+      (set-face-attribute 'window-divider-first-pixel nil
+                    :foreground "#d4c5b9")
+      (set-face-attribute 'window-divider-last-pixel nil
+                    :foreground "#d4c5b9")
     '';
   };
   services.emacs = {
