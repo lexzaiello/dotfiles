@@ -313,6 +313,7 @@ in {
       (add-hook 'after-make-frame-functions #'my/force-theme-on-window)
       (mapc #'disable-theme custom-enabled-themes)
       (setq inhibit-x-resources t)
+      (setq custom-file (make-temp-name (concat temporary-file-directory "emacs-custom-")))
     '';
   };
   services.emacs = {
