@@ -260,7 +260,6 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     xorg.xbacklight
-    zoom
     wget
     emacs
     home-manager
@@ -268,7 +267,6 @@ in {
     git-lfs
     firefox
     killall
-    neofetch
     ripgrep
     gnumake
     nixfmt-classic
