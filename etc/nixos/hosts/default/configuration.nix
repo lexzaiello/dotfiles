@@ -89,7 +89,6 @@ in {
     };
   };
   programs.nix-ld.enable = true;
-  programs.light.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
