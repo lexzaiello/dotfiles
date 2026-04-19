@@ -123,11 +123,8 @@ in {
     feh
     gruvbox-gtk-theme
     zsh-syntax-highlighting
-    python313Packages.python-lsp-server
     xclip
-    black
     python313
-    go
     libgcc
     gcc
     cargo
@@ -135,14 +132,10 @@ in {
     rust-analyzer
     rustfmt
     pavucontrol
-    docker-compose
-    protobuf
     discord
     signal-desktop
-    obsidian
     chromium
     flameshot
-    vale
     elan
     lldb
     gdb
@@ -151,14 +144,10 @@ in {
     tor-browser
     kdePackages.kleopatra
     picom
-    ghostscript
     tex
     (agda.withPackages (p: [
       p.standard-library
     ]))
-    (rstudioWrapper.override {
-      packages = with rPackages; [ Rmpfr readr dplyr tidyverse ];
-    })
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
