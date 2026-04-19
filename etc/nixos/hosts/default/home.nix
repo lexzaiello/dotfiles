@@ -53,6 +53,7 @@ in {
     (import ./features/git.nix)
     (import ./features/direnv.nix)
     (import ./features/nushell.nix args)
+    (import ./features/polybar.nix args)
   ];
   stylix.enable = true;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-light.yaml";
