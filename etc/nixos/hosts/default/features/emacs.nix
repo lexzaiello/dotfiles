@@ -197,7 +197,7 @@ in {
         (prettify-symbols-mode 1)
       ))
 
-      (set-frame-font "IosevkaTerm Nerd Font Mono 140" nil t)
+      (set-frame-font "IosevkaTerm Nerd Font Mono 10")
 
       (setq rust-format-on-save t)
       (setq-default display-line-numbers-type 'relative)
