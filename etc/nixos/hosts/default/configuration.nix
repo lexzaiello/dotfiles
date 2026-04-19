@@ -105,7 +105,7 @@ in {
         "class_g = 'Polybar'"
       ];
       inactive-opacity = 0.9;
-      active-opacity = 0.98;
+      active-opacity = 1.0;
       frame-opacity = 1.0;
       inactive-opacity-override = true;
       round-borders = 1;
