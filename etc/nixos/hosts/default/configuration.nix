@@ -158,11 +158,11 @@ in {
 
             myTheme = def {
                activeColor           = "${config.lib.stylix.colors.base00}"
-               , inactiveColor       = "${config.lib.stylix.colors.base0D}"
-               , urgentColor         = "${config.lib.stylix.colors.base06}"
-               , activeBorderColor   = "${config.lib.stylix.colors.base01}"
-               , inactiveBorderColor = "${config.lib.stylix.colors.base02}"
-               , urgentBorderColor   = "${config.lib.stylix.colors.base05}"
+               , inactiveColor       = "${config.lib.stylix.colors.base01}"
+               , urgentColor         = "${config.lib.stylix.colors.base09}"
+               , activeBorderColor   = "${config.lib.stylix.colors.base00}"
+               , inactiveBorderColor = "${config.lib.stylix.colors.base01}"
+               , urgentBorderColor   = "${config.lib.stylix.colors.base09}"
                , activeBorderWidth   = 2
                , urgentBorderWidth   = 2
                , fontName            = "${import ./features/font.nix}"
