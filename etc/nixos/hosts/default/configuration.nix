@@ -102,16 +102,10 @@ in {
     package = pkgs.picom;
     backend = "glx";
     settings = {
-      corner-radius = 12;
-      rounded-corners = true;
-      rounded-corners-exclude = [
-        "class_g = 'Polybar'"
-      ];
       inactive-opacity = 0.9;
       active-opacity = 1.0;
       frame-opacity = 1.0;
       inactive-opacity-override = true;
-      round-borders = 0;
       blur-background = true;
       blur-method = "dual_kawase";
       blur-strength = 7;
