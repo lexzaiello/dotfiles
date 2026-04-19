@@ -32,7 +32,7 @@ in {
         bottom = false;
         top = true;
         background = "#${config.lib.stylix.colors.base00}";
-        foreground = "#${config.lib.stylix.colors.base01}";
+        foreground = "#${config.lib.stylix.colors.base08}";
 
         modules-left = "ewmh";
 

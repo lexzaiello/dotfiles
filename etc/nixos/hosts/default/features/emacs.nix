@@ -22,6 +22,7 @@ in {
         lsp-mode
         lsp-ui
         doom-modeline
+        nerd-icons
         all-the-icons
         treesit-grammars.with-all-grammars
         leerzeichen
@@ -111,6 +112,8 @@ in {
       (add-hook 'minibuffer-exit-hook 'doom-restore-gc-h)
 
       (doom-modeline-mode 1)
+      (setq doom-modeline-battery t)
+      (setq doom-modeline-time t)
 
       (setq lsp-headerline-breadcrumb-enable nil)
       (lsp-headerline-breadcrumb-mode -1)
