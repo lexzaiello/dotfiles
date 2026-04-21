@@ -184,11 +184,9 @@ in {
         org-ellipsis "…")
       (setq-default line-spacing 0.3)
       (add-hook 'org-mode-hook (lambda ()
-        (set-face-attribute 'variable-pitch nil :family "Comic Neue" :height 140)
-        (set-face-attribute 'fixed-pitch nil :family "IosevkaTerm Nerd Font Mono" :height 140)
-        (set-face-attribute 'default nil :family "IosevkaTerm Nerd Font Mono" :height 140)
-        (set-face-attribute 'variable-pitch nil :family "Comic Neue" :height 140)
-        (set-face-attribute 'fixed-pitch nil :family "IosevkaTerm Nerd Font Mono" :height 140)
+        (variable-pitch-mode 1)
+        (set-face-attribute 'variable-pitch nil :family "Comic Neue" :height 1.0)
+        (set-face-attribute 'fixed-pitch nil :family "IosevkaTerm Nerd Font Mono" :height 1.0)
         (face-remap-add-relative 'default 'variable-pitch)
         (dolist (face '(org-level-1
                   org-level-2
