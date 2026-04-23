@@ -254,6 +254,9 @@ in {
                    (find-alternate-file file))))
       (global-set-key (kbd "C-c r") 'reopen-file-as-root)
 
+      (setq whitespace-style '(face trailing space-before-tab empty))
+      (global-whitespace-mode 1)
+
       (setq auto-mode-alist
           (append
           '(("\\.tsx\\'" . web-mode)
