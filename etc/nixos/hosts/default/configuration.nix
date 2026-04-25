@@ -246,7 +246,11 @@ in {
     users = { "dowlandaiello" = import ./home.nix args; };
   };
 
-  xdg.portal.config = { common = { default = [ "gtk" ]; }; };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "*";
+  };
 
   # $ nix search wget
   environment.systemPackages = with pkgs; [
