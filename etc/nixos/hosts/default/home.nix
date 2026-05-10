@@ -135,6 +135,7 @@ in {
     obs-studio
     tor-browser
     kdePackages.kleopatra
+    vscodium
     picom
     tex
     (agda.withPackages (p: [
