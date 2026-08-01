@@ -269,6 +269,8 @@ in {
                                                      (lsp-mode)
                                                      (global-set-key (kbd "C-c C-i") 'lean4-toggle-info))))
 
+      (setenv "LEAN_NUM_THREADS" "16")
+
       (setq lsp-file-watch-ignored
         '("[/\\\\]\\.git$"
           "[/\\\\]\\.direnv$"
