@@ -265,7 +265,6 @@ in {
     killall
     ripgrep
     gnumake
-    nixfmt-classic
     lsof
     zip
     unzip

@@ -113,7 +113,6 @@ in {
     multimarkdown
     nerd-fonts.monoid
     feh
-    gruvbox-gtk-theme
     zsh-syntax-highlighting
     xclip
     python313
