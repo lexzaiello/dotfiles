@@ -21,7 +21,7 @@
 
 (setq aw-scope 'global)
 
-(defvar my/work-ids (number-sequence 1 9))
+(defvar my/work-ids (number-sequence 0 8))
 
 (defun my/doall-workspaces (fn)
   "Run FN for its side effects on all monitor IDs."
