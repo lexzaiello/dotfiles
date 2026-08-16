@@ -56,8 +56,8 @@
   (find-file my/org-home))
 
 (global-set-key (kbd "s-w") 'my/set-monitor)
-(global-set-key (kbd "s-<return>") 'my/spawn-vterm-buffer)
-(global-set-key (kbd "s-e") 'my/show-org-home)
+(global-set-key (kbd "s-<return>") #'my/spawn-vterm-buffer)
+(global-set-key (kbd "s-e") #'my/show-org-home)
 (global-set-key (kbd "C-S-SPC") 'my/launcher)
 
 (my/set-monitor "eDP")
