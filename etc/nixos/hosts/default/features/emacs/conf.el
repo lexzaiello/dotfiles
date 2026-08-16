@@ -83,9 +83,11 @@
    (lambda (x)
      (setq my/wifi-string x))))
 
-(defun my/spawn-vterm-buffer ()
-  "Summon vterm as a new scratch-ish buffer."
+(defun my/spawn-vterm-buffer (&optional new-window)
+  "Summon vterm as a new scratch-ish buffer, in a new window if NEW-WINDOW."
   (interactive)
+  (when new-window
+    (select-window (split-window-below)))
   (vterm (generate-new-buffer-name "*vterm*")))
 
 ; Docs, shortcut links
@@ -103,6 +105,7 @@
 (global-set-key (kbd "s-S-w") 'my/refresh-wifi)
 (global-set-key (kbd "s-w") 'my/set-monitor)
 (global-set-key (kbd "s-<return>") 'my/spawn-vterm-buffer)
+(global-set-key (kbd "C-u s-<return>") (lambda () (interactive) (my/spawn-vterm-buffer t)))
 (global-set-key (kbd "s-e") 'my/show-org-home)
 (global-set-key (kbd "C-S-SPC") 'my/launcher)
 (global-set-key (kbd "C-S-s-SPC") (lambda () (interactive) (my/launcher t)))
