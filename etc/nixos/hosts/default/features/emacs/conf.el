@@ -19,7 +19,6 @@
 (setq exwm-input-global-keys `(([?\s-r] . exwm-reset)))
 
 (exwm-randr-enable)
-(exwm-enable)
 
 (defun my/get-monitors ()
   "Read connected monitor names."
@@ -40,7 +39,7 @@
    (list (completing-read "Monitor name: " (my/get-monitors))))
   (let* ((mon-ids (number-sequence 1 9))
 	 (mon-plist (mapcan (lambda (x) (list x disp-name)) mon-ids)))
-    (setq exwm-randr-workspace-output-plist mon-plist)))
+    (setq exwm-randr-workspace-monitor-plist mon-plist)))
 
 (defun my/spawn-vterm-buffer ()
   "Summon vterm as a new scratch-ish buffer."

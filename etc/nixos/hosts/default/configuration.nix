@@ -133,7 +133,7 @@ in {
 
     videoDrivers = [ "amdgpu" ];
     windowManager.exwm.enable = true;
-    displayManager.defaultSession = "none+exwm";
+    displayManager.lightdm.enable = true;
 
     /*windowManager = {
       xmonad = {
