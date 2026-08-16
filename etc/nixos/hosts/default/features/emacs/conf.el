@@ -110,33 +110,33 @@
 (defvar my/volume-string "")
 (defvar my/--last-cpu-stats nil)
 
-(defun my/--async-shell-to (var-symbol command parse-fn)
-  "Run COMMAND asynchronously; store PARSE-FN applied to output in VAR-SYMBOL."
-  (let ((buf (generate-new-buffer " *my/async*")))
-    (make-process
-     :name "my/async"
-     :buffer buf
-     :command command
-     :sentinel
-     (lambda (proc _event)
-       (when (eq (process-status proc) 'exit)
-         (with-current-buffer (process-buffer proc)
-           (set var-symbol (funcall parse-fn (buffer-string))))
-         (kill-buffer (process-buffer proc)))))))
-
-(defun my/--refresh-wifi ()
-  "Refreshes the WIFI SSID hopefully quickly."
-  (my/--async-shell-to
-   'my/wifi-string
-   '("nmcli" "-t" "-f" "active,ssid" "--rescan" "no" "dev" "wifi")
-   (lambda (out)
-     (let* ((line (car (seq-filter (lambda (l) (string-prefix-p "yes:" l))
-                                    (split-string out "\n" t))))
-            (ssid (and line (cadr (split-string line ":")))))
-       (if (or (null ssid) (string-empty-p ssid)) "offline" ssid)))))
+;;(defun my/--async-shell-to (var-symbol command parse-fn)
+;;  "Run COMMAND asynchronously; store PARSE-FN applied to output in VAR-SYMBOL."
+;;  (let ((buf (generate-new-buffer " *my/async*")))
+;;    (make-process
+;;     :name "my/async"
+;;     :buffer buf
+;;     :command command
+;;     :sentinel
+;;     (lambda (proc _event)
+;;       (when (eq (process-status proc) 'exit)
+;;         (with-current-buffer (process-buffer proc)
+;;           (set var-symbol (funcall parse-fn (buffer-string))))
+;;         (kill-buffer (process-buffer proc)))))))
+;;
+;;(defun my/--refresh-wifi ()
+;;  "Refreshes the WIFI SSID hopefully quickly."
+;;  (my/--async-shell-to
+;;   'my/wifi-string
+;;   '("nmcli" "-t" "-f" "active,ssid" "--rescan" "no" "dev" "wifi")
+;;   (lambda (out)
+;;     (let* ((line (car (seq-filter (lambda (l) (string-prefix-p "yes:" l))
+;;                                    (split-string out "\n" t))))
+;;            (ssid (and line (cadr (split-string line ":")))))
+;;       (if (or (null ssid) (string-empty-p ssid)) "offline" ssid)))))
 
 ;; replace the old my/--refresh-slow timer target:
-(run-with-timer 0 5 (lambda () (my/--refresh-wifi)))
+;; (run-with-timer 0 5 (lambda () (my/--refresh-wifi)))
 
 (defun my/--cpu-usage ()
   "Show CPU % from /proc."
