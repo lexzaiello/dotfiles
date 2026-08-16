@@ -49,7 +49,7 @@
 	(kbd "C-c SPC")
 	(kbd "M-x")
 	(kbd "M-o")
-	(kbd "C-o")
+	(kbd "C-x-o")
 	(kbd "C-c p e")
 	(kbd "C-c a")))
 
