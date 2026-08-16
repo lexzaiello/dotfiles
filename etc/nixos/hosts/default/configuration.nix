@@ -8,6 +8,12 @@ in {
     inputs.home-manager.nixosModules.default
   ];
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   # Binary Cache for haskell.nix
   nix.settings.trusted-public-keys = [
     "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
@@ -60,6 +66,7 @@ in {
 
   fonts.packages = with pkgs; [
     comic-neue
+    nerd-fonts.symbols-only
     nerd-fonts.comic-shanns-mono
     font-awesome
     noto-fonts
@@ -125,8 +132,10 @@ in {
     };
 
     videoDrivers = [ "amdgpu" ];
+    windowManager.exwm.enable = true;
+    displayManager.defaultSession = "none+exwm";
 
-    windowManager = {
+    /*windowManager = {
       xmonad = {
           enable = true;
           enableContribAndExtras = true;
@@ -201,7 +210,7 @@ in {
               ]
           '';
         };
-    };
+    };*/
   };
 
   # Enable CUPS to print documents.
@@ -330,4 +339,3 @@ in {
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
 }
-
