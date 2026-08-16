@@ -81,7 +81,7 @@
    (lambda ()
      (shell-command-to-string "LANG=C nmcli -t -f active,ssid dev wifi | grep ^yes | cut -d: -f2-"))
    (lambda (x)
-     (setq my/wifi-string x))))
+     (setq my/wifi-string (string-trim x)))))
 
 (defun my/spawn-vterm-buffer (&optional new-window)
   "Summon vterm as a new scratch-ish buffer, in a new window if NEW-WINDOW."
