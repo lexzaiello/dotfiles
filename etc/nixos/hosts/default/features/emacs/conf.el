@@ -227,7 +227,7 @@
 (doom-modeline-def-segment my/volume (concat "  " my/volume-string))
 
 (doom-modeline-def-modeline 'main
-  '(bar workspace-name exwm-workspaces window-number modals matches follow buffer-info remote-host
+  '(bar workspace-name window-number modals matches follow buffer-info remote-host
     buffer-position word-count parrot selection-info)
   '(compilation objed-state misc-info persp-name grip irc mu4e gnus github debug repl
     lsp minor-modes input-method indent-info buffer-encoding major-mode process vcs check
