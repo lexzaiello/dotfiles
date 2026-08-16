@@ -48,7 +48,7 @@
 (defun my/launcher (&optional steal-window)
   "Alias: My launcher instead of rofi.  STEAL-WINDOW will show in the current window."
   (interactive)
-  (unless new-window
+  (unless steal-window
     (select-window (split-window-right)))
   (counsel-linux-app))
 
