@@ -85,6 +85,8 @@
    (lambda (x)
      (setq my/wifi-string (string-trim x)))))
 
+(my/refresh-wifi)
+
 (defun my/spawn-vterm-buffer (&optional new-window)
   "Summon vterm as a new scratch-ish buffer, in a new window if NEW-WINDOW."
   (interactive)
