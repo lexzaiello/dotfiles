@@ -105,7 +105,6 @@
 (global-set-key (kbd "s-i") 'my/refresh-wifi)
 (global-set-key (kbd "s-w") 'my/set-monitor)
 (global-set-key (kbd "s-<return>") 'my/spawn-vterm-buffer)
-(global-set-key (kbd "C-u s-<return>") (lambda () (interactive) (my/spawn-vterm-buffer t)))
 (global-set-key (kbd "s-e") 'my/show-org-home)
 (global-set-key (kbd "C-S-SPC") 'my/launcher)
 (global-set-key (kbd "C-S-s-SPC") (lambda () (interactive) (my/launcher t)))
