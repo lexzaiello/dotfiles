@@ -30,6 +30,7 @@
 (defun my/launcher ()
   "Alias: My launcher instead of rofi."
   (interactive)
+  (select-window (split-window-right))
   (counsel-linux-app))
 
 (defun my/set-monitor (disp-name)
@@ -42,6 +43,7 @@
 
 (defun my/spawn-vterm-buffer ()
   "Summon vterm as a new scratch-ish buffer."
+  (interactive)
   (vterm (generate-new-buffer-name "*vterm*")))
 
 ; Docs, shortcut links
@@ -53,11 +55,12 @@
 
 (defun my/show-org-home ()
   "Show my Org master file."
+  (interactive)
   (find-file my/org-home))
 
 (global-set-key (kbd "s-w") 'my/set-monitor)
-(global-set-key (kbd "s-<return>") #'my/spawn-vterm-buffer)
-(global-set-key (kbd "s-e") #'my/show-org-home)
+(global-set-key (kbd "s-<return>") 'my/spawn-vterm-buffer)
+(global-set-key (kbd "s-e") 'my/show-org-home)
 (global-set-key (kbd "C-S-SPC") 'my/launcher)
 
 (my/set-monitor "eDP")
@@ -107,6 +110,34 @@
 (defvar my/volume-string "")
 (defvar my/--last-cpu-stats nil)
 
+(defun my/--async-shell-to (var-symbol command parse-fn)
+  "Run COMMAND asynchronously; store PARSE-FN applied to output in VAR-SYMBOL."
+  (let ((buf (generate-new-buffer " *my/async*")))
+    (make-process
+     :name "my/async"
+     :buffer buf
+     :command command
+     :sentinel
+     (lambda (proc _event)
+       (when (eq (process-status proc) 'exit)
+         (with-current-buffer (process-buffer proc)
+           (set var-symbol (funcall parse-fn (buffer-string))))
+         (kill-buffer (process-buffer proc)))))))
+
+(defun my/--refresh-wifi ()
+  "Refreshes the WIFI SSID hopefully quickly."
+  (my/--async-shell-to
+   'my/wifi-string
+   '("nmcli" "-t" "-f" "active,ssid" "--rescan" "no" "dev" "wifi")
+   (lambda (out)
+     (let* ((line (car (seq-filter (lambda (l) (string-prefix-p "yes:" l))
+                                    (split-string out "\n" t))))
+            (ssid (and line (cadr (split-string line ":")))))
+       (if (or (null ssid) (string-empty-p ssid)) "offline" ssid)))))
+
+;; replace the old my/--refresh-slow timer target:
+(run-with-timer 0 5 (lambda () (my/--refresh-wifi)))
+
 (defun my/--cpu-usage ()
   "Show CPU % from /proc."
   (let* ((fields (with-temp-buffer
@@ -153,13 +184,7 @@
   (setq my/cpu-string (format "%d%%" (my/--cpu-usage)))
   (setq my/ram-string (format "%d%%" (my/--ram-usage))))
 
-(defun my/--refresh-slow ()
-  "Wifi/volume: spawn a process, poll less often."
-  (setq my/wifi-string (my/--wifi-ssid))
-  (setq my/volume-string (format "%s%%" (my/--volume))))
-
 (run-with-timer 0 2 #'my/--refresh-fast)
-(run-with-timer 0 5 #'my/--refresh-slow)
 
 ;; --- doom-modeline segments (just read the cached vars, no I/O here) ---
 (doom-modeline-def-segment my/cpu   (concat "  " my/cpu-string))
@@ -186,8 +211,9 @@
 (setq doom-modeline-lsp-icon t)
 (setq doom-modeline-time-icon t)
 (setq doom-modeline-time-live-icon t)
-; (setq doom-modeline-battery t)
-; (setq doom-modeline-time t)
+(setq doom-modeline-battery t)
+(setq doom-modeline-time t)
+(display-battery-mode 1)
 (doom-modeline-mode 1)
 
 (setq lsp-headerline-breadcrumb-enable nil)
