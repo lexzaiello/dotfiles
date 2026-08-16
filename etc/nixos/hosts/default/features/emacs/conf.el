@@ -104,7 +104,7 @@
   (interactive)
   (find-file my/org-home))
 
-(global-set-key (kbd "s-i") 'my/refresh-wifi)
+(global-set-key (kbd "s-S-i") 'my/refresh-wifi)
 (global-set-key (kbd "s-w") 'my/set-monitor)
 (global-set-key (kbd "s-<return>") 'my/spawn-vterm-buffer)
 (global-set-key (kbd "s-e") 'my/show-org-home)
@@ -116,7 +116,7 @@
 (my/set-monitor "eDP")
 
 (setq exwm-input-global-keys `(([?\s-r] . exwm-reset)
-			       (,(kbd "s-S-w") . my/refresh-wifi)
+			       (,(kbd "s-S-i") . my/refresh-wifi)
 			       (,(kbd "s-b") . exwm-workspace-switch-to-buffer)
 			       (,(kbd "s-w") . my/set-monitor)
 			       (,(kbd "s-<return>") . my/spawn-vterm-buffer)
@@ -227,7 +227,7 @@
 (doom-modeline-def-segment my/volume (concat "  " my/volume-string))
 
 (doom-modeline-def-modeline 'main
-  '(bar workspace-name window-number modals matches follow buffer-info remote-host
+  '(bar workspace-name exwm-workspaces window-number modals matches follow buffer-info remote-host
     buffer-position word-count parrot selection-info)
   '(compilation objed-state misc-info persp-name grip irc mu4e gnus github debug repl
     lsp minor-modes input-method indent-info buffer-encoding major-mode process vcs check
@@ -428,7 +428,8 @@
 
 (with-eval-after-load 'org
   ;; Force file links to open in the current window
-  (setf (alist-get 'file org-link-frame-setup) 'find-file))
+  (setf (alist-get 'file org-link-frame-setup) 'find-file)
+  (define-key org-mode-map (kbd "C-c RET") nil))
 
 (load-theme 'base16-gruvbox-light t)
 (set-face-attribute 'window-divider nil

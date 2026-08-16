@@ -3,11 +3,23 @@ let
   system = "x86_64-linux";
   font = import ./font.nix;
   lib = inputs.nixpkgs.lib;
+  doom-modeline-exwm = pkgs.emacsPackages.trivialBuild {
+    pname = "doom-modeline-exwm";
+    version = "latest";
+    src = pkgs.fetchFromGitHub {
+      owner = "elken";
+      repo = "doom-modeline-exwm";
+      rev = "87bffb3dd8bd1290ac01b795c4fc291b472fc800";
+      sha256 = "sha256-Xu15+PjW9PRqMfAJCGMXmvsNizPwsOP9sMR7MhY1EWU=";
+    };
+    packageRequires = with pkgs.emacsPackages; [ doom-modeline exwm ];
+  };
 in {
   programs.emacs = {
     enable = true;
     extraPackages = epkgs:
       with epkgs; [
+        doom-modeline-exwm
         async
         ace-window
         xelb
