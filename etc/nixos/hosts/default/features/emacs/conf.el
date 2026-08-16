@@ -15,6 +15,7 @@
 (menu-bar-mode -1)
 (require 'exwm-randr)
 (require 'exwm)
+(require 'doom-modeline)
 
 (setq exwm-input-global-keys `(([?\s-r] . exwm-reset)))
 
