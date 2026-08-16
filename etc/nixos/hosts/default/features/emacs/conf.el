@@ -108,12 +108,14 @@
 (global-set-key (kbd "s-e") 'my/show-org-home)
 (global-set-key (kbd "C-S-SPC") 'my/launcher)
 (global-set-key (kbd "C-S-s-SPC") (lambda () (interactive) (my/launcher t)))
+(global-set-key (kbd "s-b") 'exwm-workspace-switch-to-buffer)
+(global-set-key (kbd "C-c RET") 'exwm-workspace-move-window)
 
 (my/set-monitor "eDP")
 
-
 (setq exwm-input-global-keys `(([?\s-r] . exwm-reset)
 			       (,(kbd "s-S-w") . my/refresh-wifi)
+			       (,(kbd "s-b") . exwm-workspace-switch-to-buffer)
 			       (,(kbd "s-w") . my/set-monitor)
 			       (,(kbd "s-<return>") . my/spawn-vterm-buffer)
 			       (,(kbd "s-e") . my/show-org-home)
