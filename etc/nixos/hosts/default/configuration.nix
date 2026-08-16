@@ -132,8 +132,14 @@ in {
     };
 
     videoDrivers = [ "amdgpu" ];
-    windowManager.exwm.enable = true;
     displayManager.lightdm.enable = true;
+    windowManager.session = [{
+      name = "exwm-hm";
+      start = ''
+        # This ensures the display manager runs your Home Manager Emacs
+        exec emacs -mm --debug-init
+      '';
+    }];
 
     /*windowManager = {
       xmonad = {
@@ -266,7 +272,6 @@ in {
     rofi
     xorg.xbacklight
     wget
-    emacs
     home-manager
     git
     git-lfs
