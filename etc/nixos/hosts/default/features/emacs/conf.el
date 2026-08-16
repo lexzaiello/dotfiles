@@ -18,8 +18,6 @@
 
 (setq exwm-input-global-keys `(([?\s-r] . exwm-reset)))
 
-(exwm-randr-enable)
-
 (defun my/get-monitors ()
   "Read connected monitor names."
   (let* ((output (shell-command-to-string "xrandr | grep ' connected '"))
