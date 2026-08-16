@@ -13,11 +13,45 @@
 (tool-bar-mode -1)
 (tooltip-mode -1)
 (menu-bar-mode -1)
+(display-battery-mode 1)
 (require 'exwm-randr)
 (require 'exwm)
 (require 'doom-modeline)
+(require 'async)
 
 (setq exwm-input-global-keys `(([?\s-r] . exwm-reset)))
+
+(defvar my/work-ids (number-sequence 1 9))
+
+(defun my/doall-workspaces (fn)
+  "Run FN for its side effects on all monitor IDs."
+  (mapc fn my/work-ids))
+
+(defun my/gen-workspace-toggles ()
+  "Generate toggle for setting workspaces."
+  (interactive)
+  (my/doall-workspaces
+   (lambda (mon)
+     (exwm-input-set-key
+      (kbd (format "s-%d" mon))
+      `(lambda () (interactive)
+	 (exwm-workspace-switch ,mon))))))
+
+(setq exwm-workspace-number 9)
+
+(setq exwm-input-prefix-keys
+      '((kbd "s-S-w")
+	(kbd "s-w")
+	(kbd "s-<return>")
+	(kbd "s-e")
+	(kbd "C-S-SPC")
+	(kbd "C-S-s-SPC")
+	(kbd "C-c SPC")
+	(kbd "M-x")
+	(kbd "M-o")
+	(kbd "C-o")
+	(kbd "C-c p e")
+	(kbd "C-c a")))
 
 (defun my/get-monitors ()
   "Read connected monitor names."
@@ -27,19 +61,43 @@
 	      (car (split-string x "[ \t]+")))
 	    lines)))
 
-(defun my/launcher ()
-  "Alias: My launcher instead of rofi."
+(defun my/launcher (&optional new-window)
+  "Alias: My launcher instead of rofi.  NEW-WINDOW will toggle showing in a new window."
   (interactive)
-  (select-window (split-window-right))
+  (when new-window
+    (select-window (split-window-right)))
   (counsel-linux-app))
 
 (defun my/set-monitor (disp-name)
   "Change the main monitor (DISP-NAME) EXWM displays workspaces on."
   (interactive
    (list (completing-read "Monitor name: " (my/get-monitors))))
-  (let* ((mon-ids (number-sequence 1 9))
-	 (mon-plist (mapcan (lambda (x) (list x disp-name)) mon-ids)))
+  (let* ((mon-plist (mapcan (lambda (x) (list x disp-name)) my/work-ids)))
     (setq exwm-randr-workspace-monitor-plist mon-plist)))
+
+(defun my/gen-workspace-teleport ()
+  "Generate toggle for teleporting windows to other workspaces."
+  (interactive)
+  (my/doall-workspaces
+   (lambda (mon)
+     (define-key exwm-mode-map
+      (kbd (format "s-S-%d" mon))
+      `(lambda () (interactive)
+	 (exwm-workspace-move-window ,mon))))))
+
+(my/gen-workspace-toggles)
+(my/gen-workspace-teleport)
+
+(defvar my/wifi-string "")
+
+(defun my/refresh-wifi ()
+  "Show the currrent WIFI network SSID."
+  (interactive)
+  (async-start
+   (lambda ()
+     (shell-command-to-string "LANG=C nmcli -t -f active,ssid dev wifi | grep ^yes | cut -d: -f2-"))
+   (lambda (x)
+     (setq my/wifi-string x))))
 
 (defun my/spawn-vterm-buffer ()
   "Summon vterm as a new scratch-ish buffer."
@@ -58,10 +116,12 @@
   (interactive)
   (find-file my/org-home))
 
+(global-set-key (kbd "s-S-w") 'my/refresh-wifi)
 (global-set-key (kbd "s-w") 'my/set-monitor)
 (global-set-key (kbd "s-<return>") 'my/spawn-vterm-buffer)
 (global-set-key (kbd "s-e") 'my/show-org-home)
 (global-set-key (kbd "C-S-SPC") 'my/launcher)
+(global-set-key (kbd "C-S-s-SPC") (lambda () (interactive) (my/launcher t)))
 
 (my/set-monitor "eDP")
 
@@ -90,6 +150,7 @@
       (local-set-key (kbd "C-c [") #'citar-insert-citation)))
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key global-map (kbd "M-S-o") 'ace-swap-window)
 
 (setq gc-cons-percentage 0.1)
 
@@ -106,37 +167,8 @@
 
 (defvar my/cpu-string "")
 (defvar my/ram-string "")
-(defvar my/wifi-string "")
 (defvar my/volume-string "")
 (defvar my/--last-cpu-stats nil)
-
-;;(defun my/--async-shell-to (var-symbol command parse-fn)
-;;  "Run COMMAND asynchronously; store PARSE-FN applied to output in VAR-SYMBOL."
-;;  (let ((buf (generate-new-buffer " *my/async*")))
-;;    (make-process
-;;     :name "my/async"
-;;     :buffer buf
-;;     :command command
-;;     :sentinel
-;;     (lambda (proc _event)
-;;       (when (eq (process-status proc) 'exit)
-;;         (with-current-buffer (process-buffer proc)
-;;           (set var-symbol (funcall parse-fn (buffer-string))))
-;;         (kill-buffer (process-buffer proc)))))))
-;;
-;;(defun my/--refresh-wifi ()
-;;  "Refreshes the WIFI SSID hopefully quickly."
-;;  (my/--async-shell-to
-;;   'my/wifi-string
-;;   '("nmcli" "-t" "-f" "active,ssid" "--rescan" "no" "dev" "wifi")
-;;   (lambda (out)
-;;     (let* ((line (car (seq-filter (lambda (l) (string-prefix-p "yes:" l))
-;;                                    (split-string out "\n" t))))
-;;            (ssid (and line (cadr (split-string line ":")))))
-;;       (if (or (null ssid) (string-empty-p ssid)) "offline" ssid)))))
-
-;; replace the old my/--refresh-slow timer target:
-;; (run-with-timer 0 5 (lambda () (my/--refresh-wifi)))
 
 (defun my/--cpu-usage ()
   "Show CPU % from /proc."
@@ -213,7 +245,6 @@
 (setq doom-modeline-time-live-icon t)
 (setq doom-modeline-battery t)
 (setq doom-modeline-time t)
-(display-battery-mode 1)
 (doom-modeline-mode 1)
 
 (setq lsp-headerline-breadcrumb-enable nil)

@@ -8,6 +8,8 @@ in {
     enable = true;
     extraPackages = epkgs:
       with epkgs; [
+        async
+        ace-window
         xelb
         exwm
         jinx
