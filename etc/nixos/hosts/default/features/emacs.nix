@@ -18,6 +18,7 @@ in {
         nix-sandbox
         vterm
         python-mode
+        mixed-pitch
         python-black
         lsp-mode
         lsp-ui
@@ -72,6 +73,11 @@ in {
       (menu-bar-mode -1)
       (require 'lean4-mode)
       (require 'ace-jump-mode)
+
+      (set-frame-font "IosevkaTerm Nerd Font Mono 10")
+      (set-face-attribute 'variable-pitch nil
+                    :family "Comic Neue"
+                    :height 1.0)
 
       (setq-default line-spacing 0.1)
 
@@ -184,9 +190,7 @@ in {
         org-ellipsis "…")
       (setq-default line-spacing 0.3)
       (add-hook 'org-mode-hook (lambda ()
-        (variable-pitch-mode 1)
-        (set-face-attribute 'variable-pitch nil :family "Comic Neue" :height 1.0)
-        (face-remap-add-relative 'default 'variable-pitch)
+        (mixed-pitch-mode 1)
         (dolist (face '(org-level-1
                   org-level-2
                   org-level-3
@@ -211,8 +215,6 @@ in {
         (setq org-superstar-headline-bullets-list '("🌺" "🌹" "🌸" "🌷" "🌿" "🌱" "🍃"))
         (prettify-symbols-mode 1)
       ))
-
-      (set-frame-font "IosevkaTerm Nerd Font Mono 10")
 
       (setq rust-format-on-save t)
       (setq-default display-line-numbers-type 'relative)
@@ -300,8 +302,6 @@ in {
       (setq org-agenda-files '("~/Documents/org/Todo.org"))
       (require 'org-agenda)
       (find-file "~/Documents/org/Todo.org")
-
-      (set-face-attribute 'variable-pitch nil :font "Comic Neue" :height 140)
 
       (with-eval-after-load 'tex
                             (add-to-list 'TeX-command-list
