@@ -425,6 +425,11 @@
                       '("NixBuild" "nix build"
                       TeX-run-command nil t :help "Run project-specific Nix build")
                       t))
+
+(with-eval-after-load 'org
+  ;; Force file links to open in the current window
+  (setf (alist-get 'file org-link-frame-setup) 'find-file))
+
 (load-theme 'base16-gruvbox-light t)
 (set-face-attribute 'window-divider nil
               :foreground "#D5C4A1"
