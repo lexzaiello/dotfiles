@@ -104,7 +104,7 @@
   (interactive)
   (find-file my/org-home))
 
-(global-set-key (kbd "s-S-i") 'my/refresh-wifi)
+(global-set-key (kbd "s-i") 'my/refresh-wifi)
 (global-set-key (kbd "s-w") 'my/set-monitor)
 (global-set-key (kbd "s-<return>") 'my/spawn-vterm-buffer)
 (global-set-key (kbd "s-e") 'my/show-org-home)
@@ -116,7 +116,7 @@
 (my/set-monitor "eDP")
 
 (setq exwm-input-global-keys `(([?\s-r] . exwm-reset)
-			       (,(kbd "s-S-i") . my/refresh-wifi)
+			       (,(kbd "s-i") . my/refresh-wifi)
 			       (,(kbd "s-b") . exwm-workspace-switch-to-buffer)
 			       (,(kbd "s-w") . my/set-monitor)
 			       (,(kbd "s-<return>") . my/spawn-vterm-buffer)
