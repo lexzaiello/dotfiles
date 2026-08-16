@@ -19,6 +19,8 @@
 (require 'doom-modeline)
 (require 'async)
 
+(setq aw-scope 'global)
+
 (defvar my/work-ids (number-sequence 1 9))
 
 (defun my/doall-workspaces (fn)
@@ -120,6 +122,7 @@
 			       (,(kbd "s-<return>") . my/spawn-vterm-buffer)
 			       (,(kbd "s-e") . my/show-org-home)
 			       (,(kbd "C-S-SPC") . my/launcher)
+			       (,(kbd "M-S-v") . ace-swap-window)
 			       (,(kbd "C-S-s-SPC") .
 				(lambda () (interactive) (my/launcher t)))
 			       (,(kbd "M-o") . ace-window)))
@@ -149,7 +152,7 @@
       (local-set-key (kbd "C-c [") #'citar-insert-citation)))
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-(define-key global-map (kbd "M-S-o") 'ace-swap-window)
+(define-key global-map (kbd "M-S-v") 'ace-swap-window)
 
 (setq gc-cons-percentage 0.1)
 
