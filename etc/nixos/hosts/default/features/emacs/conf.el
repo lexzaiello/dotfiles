@@ -45,10 +45,10 @@
 	      (car (split-string x "[ \t]+")))
 	    lines)))
 
-(defun my/launcher (&optional new-window)
-  "Alias: My launcher instead of rofi.  NEW-WINDOW will toggle showing in a new window."
+(defun my/launcher (&optional steal-window)
+  "Alias: My launcher instead of rofi.  STEAL-WINDOW will show in the current window."
   (interactive)
-  (when new-window
+  (unless new-window
     (select-window (split-window-right)))
   (counsel-linux-app))
 
@@ -111,15 +111,16 @@
 
 (my/set-monitor "eDP")
 
+
 (setq exwm-input-global-keys `(([?\s-r] . exwm-reset)
-			       ((kbd "s-S-w") . my/refresh-wifi)
-			       ((kbd "s-w") . my/set-monitor)
-			       ((kbd "s-<return>") . my/spawn-vterm-buffer)
-			       ((kbd "s-e") . my/show-org-home)
-			       ((kbd "C-S-SPC") . my/launcher)
-			       ((kbd "C-S-s-SPC") .
+			       (,(kbd "s-S-w") . my/refresh-wifi)
+			       (,(kbd "s-w") . my/set-monitor)
+			       (,(kbd "s-<return>") . my/spawn-vterm-buffer)
+			       (,(kbd "s-e") . my/show-org-home)
+			       (,(kbd "C-S-SPC") . my/launcher)
+			       (,(kbd "C-S-s-SPC") .
 				(lambda () (interactive) (my/launcher t)))
-			       ((kbd "M-o") . ace-window)))
+			       (,(kbd "M-o") . ace-window)))
 
 (require 'lean4-mode)
 (require 'ace-jump-mode)
