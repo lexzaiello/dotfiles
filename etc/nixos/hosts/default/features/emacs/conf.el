@@ -19,8 +19,6 @@
 (require 'doom-modeline)
 (require 'async)
 
-(setq exwm-input-global-keys `(([?\s-r] . exwm-reset)))
-
 (defvar my/work-ids (number-sequence 1 9))
 
 (defun my/doall-workspaces (fn)
@@ -38,20 +36,6 @@
 	 (exwm-workspace-switch ,mon))))))
 
 (setq exwm-workspace-number 9)
-
-(setq exwm-input-prefix-keys
-      '((kbd "s-S-w")
-	(kbd "s-w")
-	(kbd "s-<return>")
-	(kbd "s-e")
-	(kbd "C-S-SPC")
-	(kbd "C-S-s-SPC")
-	(kbd "C-c SPC")
-	(kbd "M-x")
-	(kbd "M-o")
-	(kbd "C-x-o")
-	(kbd "C-c p e")
-	(kbd "C-c a")))
 
 (defun my/get-monitors ()
   "Read connected monitor names."
@@ -124,6 +108,16 @@
 (global-set-key (kbd "C-S-s-SPC") (lambda () (interactive) (my/launcher t)))
 
 (my/set-monitor "eDP")
+
+(setq exwm-input-global-keys `(([?\s-r] . exwm-reset)
+			       ((kbd "s-S-w") . my/refresh-wifi)
+			       ((kbd "s-w") . my/set-monitor)
+			       ((kbd "s-<return>") . my/spawn-vterm-buffer)
+			       ((kbd "s-e") . my/show-org-home)
+			       ((kbd "C-S-SPC") . my/launcher)
+			       ((kbd "C-S-s-SPC") .
+				(lambda () (interactive) (my/launcher t)))
+			       ((kbd "M-o") . ace-window)))
 
 (require 'lean4-mode)
 (require 'ace-jump-mode)
