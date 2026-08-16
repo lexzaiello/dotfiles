@@ -269,6 +269,7 @@ in {
 
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    gtk4
     rofi
     xorg.xbacklight
     wget
