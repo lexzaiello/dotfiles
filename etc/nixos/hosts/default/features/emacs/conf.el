@@ -14,6 +14,7 @@
 (tooltip-mode -1)
 (menu-bar-mode -1)
 (display-battery-mode 1)
+(require 'bind-key)
 (require 'exwm-randr)
 (require 'exwm)
 (require 'doom-modeline)
@@ -106,14 +107,14 @@
   (interactive)
   (find-file my/org-home))
 
-(global-set-key (kbd "s-i") 'my/refresh-wifi)
-(global-set-key (kbd "s-w") 'my/set-monitor)
-(global-set-key (kbd "s-<return>") 'my/spawn-vterm-buffer)
-(global-set-key (kbd "s-e") 'my/show-org-home)
-(global-set-key (kbd "C-S-SPC") 'my/launcher)
-(global-set-key (kbd "C-S-s-SPC") (lambda () (interactive) (my/launcher t)))
-(global-set-key (kbd "s-b") 'exwm-workspace-switch-to-buffer)
-(global-set-key (kbd "C-c RET") 'exwm-workspace-move-window)
+(bind-key* (kbd "s-i") 'my/refresh-wifi)
+(bind-key* (kbd "s-w") 'my/set-monitor)
+(bind-key* (kbd "s-<return>") 'my/spawn-vterm-buffer)
+(bind-key* (kbd "s-e") 'my/show-org-home)
+(bind-key* (kbd "C-S-SPC") 'my/launcher)
+(bind-key* (kbd "C-S-s-SPC") (lambda () (interactive) (my/launcher t)))
+(bind-key* (kbd "s-b") 'exwm-workspace-switch-to-buffer)
+(bind-key* (kbd "C-c RET") 'exwm-workspace-move-window)
 
 (my/set-monitor "eDP")
 
@@ -133,6 +134,7 @@
 (require 'ace-jump-mode)
 
 (exwm-wm-mode)
+(exwm-randr-mode)
 
 (set-frame-font my/mono-font)
 (set-face-attribute 'variable-pitch nil
@@ -154,7 +156,7 @@
       (local-set-key (kbd "C-c [") #'citar-insert-citation)))
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-(define-key global-map (kbd "M-S-v") 'ace-swap-window)
+(bind-key* (kbd "M-S-v") 'ace-swap-window)
 
 (setq gc-cons-percentage 0.1)
 
@@ -357,7 +359,7 @@
 (global-set-key [?\C-j] 'newline-and-indent)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "M-o") 'ace-window)
+(bind-key* (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "C-r") 'swiper-backward)
 (global-set-key (kbd "C-c p f") #'consult-find)

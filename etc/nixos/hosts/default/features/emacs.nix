@@ -19,6 +19,7 @@ in {
     enable = true;
     extraPackages = epkgs:
       with epkgs; [
+        bind-key
         doom-modeline-exwm
         async
         ace-window
