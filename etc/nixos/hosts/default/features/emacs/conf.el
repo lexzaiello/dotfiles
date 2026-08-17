@@ -55,12 +55,14 @@
     (select-window (split-window-right)))
   (counsel-linux-app))
 
-(defun my/set-monitor (disp-name)
-  "Change the main monitor (DISP-NAME) EXWM displays workspaces on."
+(defun my/set-monitor (disp-name &optional no-refresh)
+  "Change the main monitor (DISP-NAME) EXWM displays workspaces on, don't refresh if NO-REFRESH."
   (interactive
    (list (completing-read "Monitor name: " (my/get-monitors))))
   (let* ((mon-plist (mapcan (lambda (x) (list x disp-name)) my/work-ids)))
-    (setq exwm-randr-workspace-monitor-plist mon-plist)))
+    (setq exwm-randr-workspace-monitor-plist mon-plist)
+    (unless no-refresh
+      (ewxm-randr-refresh))))
 
 (defun my/gen-workspace-teleport ()
   "Generate toggle for teleporting windows to other workspaces."
@@ -116,7 +118,7 @@
 (bind-key* (kbd "s-b") 'exwm-workspace-switch-to-buffer)
 (bind-key* (kbd "C-c RET") 'exwm-workspace-move-window)
 
-(my/set-monitor "eDP")
+(my/set-monitor "eDP" t)
 
 (setq exwm-input-global-keys `(([?\s-r] . exwm-reset)
 			       (,(kbd "s-i") . my/refresh-wifi)
