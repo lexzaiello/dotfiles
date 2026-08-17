@@ -62,7 +62,7 @@
   (let* ((mon-plist (mapcan (lambda (x) (list x disp-name)) my/work-ids)))
     (setq exwm-randr-workspace-monitor-plist mon-plist)
     (unless no-refresh
-      (ewxm-randr-refresh))))
+      (exwm-randr-refresh))))
 
 (defun my/gen-workspace-teleport ()
   "Generate toggle for teleporting windows to other workspaces."
