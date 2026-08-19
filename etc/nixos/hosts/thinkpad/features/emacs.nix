@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 let
   system = "x86_64-linux";
-  font = import ./font.nix;
+  font = import ../../default/features/font.nix;
   lib = inputs.nixpkgs.lib;
   doom-modeline-exwm = pkgs.emacsPackages.trivialBuild {
     pname = "doom-modeline-exwm";
@@ -69,7 +69,7 @@ in {
         ace-jump-mode
         ess
         agda2-mode
-        (callPackage ./lean4-mode.nix {
+        (callPackage ../../default/features/lean4-mode.nix {
           inherit (pkgs) fetchFromGitHub;
           inherit (pkgs.lib) fakeHash;
           inherit (epkgs) melpaBuild compat lsp-mode dash magit-section;
