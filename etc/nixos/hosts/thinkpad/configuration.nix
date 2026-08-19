@@ -102,21 +102,6 @@ in {
 
   # Configure keymap in X11
   services.autorandr.enable = true;
-  services.picom = {
-    enable = true;
-    package = pkgs.picom;
-    backend = "glx";
-    settings = {
-      inactive-opacity = 0.9;
-      active-opacity = 1.0;
-      frame-opacity = 1.0;
-      inactive-opacity-override = true;
-      blur-background = true;
-      blur-method = "dual_kawase";
-      blur-strength = 7;
-      vsync = true;
-    };
-  };
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
@@ -256,7 +241,7 @@ in {
   };
 
   home-manager = {
-    users = { "dowlandaiello" = import ../default/home.nix args; };
+    users = { "dowlandaiello" = import ./home.nix args; };
   };
 
   xdg.portal = {

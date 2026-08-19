@@ -1,0 +1,157 @@
+args@{ pkgs, lib, ... }:
+
+let
+  system = "x86_64-linux";
+in {
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+  imports = [
+    (import ../default/features/xdg.nix)
+    (import ../default/features/zsh.nix args)
+    (import ../default/features/emacs.nix args)
+    (import ../default/features/git.nix)
+    (import ../default/features/direnv.nix)
+    (import ../default/features/nushell.nix args)
+    (import ../default/features/polybar.nix args)
+  ];
+  stylix.enable = true;
+  stylix.fonts.sizes.applications = 9;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-light.yaml";
+  stylix.targets.alacritty.colors.enable = true;
+  stylix.targets.alacritty.fonts.enable = true;
+  stylix.targets.emacs.colors.enable = true;
+  stylix.targets.emacs.enable = true;
+  stylix.targets.rofi.colors.enable = true;
+  stylix.targets.gnome.colors.enable = true;
+  stylix.targets.gtk.colors.enable = true;
+
+  # Home Manager needs a bit of information about you and the paths it should
+  # manage.
+  home.username = "dowlandaiello";
+  home.homeDirectory = "/home/dowlandaiello";
+
+  # This value determines the Home Manager release that your configuration is
+  # compatible with. This helps avoid breakage when a new Home Manager release
+  # introduces backwards incompatible changes.
+  #
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
+  home.stateVersion = "23.11"; # Please read the comment before changing.
+
+  # The home.packages option allows you to install Nix packages into your
+  # environment.
+  home.packages = let
+    tex = (pkgs.texlive.combine {
+      inherit (pkgs.texlive)
+        scheme-medium dvisvgm dvipng # for preview and export as html
+        wrapfig amsmath ulem hyperref capt-of mathpartir minted upquote
+        needspace ec cm;
+      #(setq org-latex-compiler "lualatex")
+      #(setq org-preview-latex-default-process 'dvisvgm)
+    });
+  in with pkgs; [
+    kdePackages.okular
+    cachix
+    # # Adds the 'hello' command to your environment. It prints a friendly
+    # # "Hello, world!" when run.
+    # pkgs.hello
+
+    # # It is sometimes useful to fine-tune packages, for example, by applying
+    # # overrides. You can do that directly here, just don't forget the
+    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+    # # fonts?
+    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+
+    # # You can also create simple shell scripts directly inside your
+    # # configuration. For example, this adds a command 'my-hello' to your
+    # # environment:
+    # (pkgs.writeShellScriptBin "my-hello" ''
+    #   echo "Hello, ${config.home.username}!"
+    # '')
+    pandoc
+    multimarkdown
+    nerd-fonts.monoid
+    feh
+    zsh-syntax-highlighting
+    xclip
+    python313
+    libgcc
+    gcc
+    cargo
+    rustc
+    rust-analyzer
+    rustfmt
+    pavucontrol
+    discord
+    signal-desktop
+    chromium
+    flameshot
+    elan
+    lldb
+    gdb
+    llvm
+    obs-studio
+    tor-browser
+    kdePackages.kleopatra
+    vscodium
+    picom
+    tex
+    (agda.withPackages (p: [
+      p.standard-library
+    ]))
+  ];
+
+  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+  # plain files is through 'home.file'.
+  home.file = {
+    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
+
+    # # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #   org.gradle.console=verbose
+    #   org.gradle.daemon.idletimeout=3600000
+    # '';
+    # ".vale.ini".text = ''
+    #   StylesPath = styles
+    #
+    #   Vocab = Blog
+    #
+    #   [*.org]
+    #   BasedOnStyles = Microsoft
+    # '';
+    ".config/direnv/direnv.toml".text = ''
+      [global]
+      log_filter = "^$"
+    '';
+  };
+
+  # Home Manager can also manage your environment variables through
+  # 'home.sessionVariables'. If you don't want to manage your shell through Home
+  # Manager then you have to manually source 'hm-session-vars.sh' located at
+  # either
+  #
+  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+  #
+  # or
+  #
+  #  /etc/profiles/per-user/dowlandaiello/etc/profile.d/hm-session-vars.sh
+  #
+  home.sessionVariables = {
+    EDITOR = "${pkgs.emacs30}/bin/emacsclient";
+    SHELL = "zsh";
+    GOPATH = "/home/dowlandaiello/go";
+    GOBIN = "/home/dowlandaiello/go/bin";
+    PATH = "$PATH:/home/dowlandaiello/go/bin";
+    GDK_BACKEND = "x11";
+    GDK_GL = "gles";
+  };
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+  programs.alacritty.enable = true;
+}
