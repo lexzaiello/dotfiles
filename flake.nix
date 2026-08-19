@@ -27,8 +27,10 @@
       };
     };
     defaultModule = ./etc/nixos/hosts/default/configuration.nix;
+    thinkModule = ./etc/nixos/hosts/thinkpad/configuration.nix;
   in {
     nixosModules.default = defaultModule;
+    nixosModules.thinkpad = thinkModule;
     checks = {
       x86_64-linux.check-config-build = (lib.nixosSystem {
         inherit system;
