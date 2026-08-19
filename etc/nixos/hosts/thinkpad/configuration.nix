@@ -114,7 +114,6 @@ in {
       options = "ctrl:swapcaps";
     };
 
-    videoDrivers = [ "amdgpu" ];
     displayManager.lightdm.enable = true;
     windowManager.session = [{
       name = "exwm-hm";
