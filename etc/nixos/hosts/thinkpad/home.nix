@@ -9,7 +9,7 @@ in {
   imports = [
     (import ../default/features/xdg.nix)
     (import ../default/features/zsh.nix args)
-    (import ../default/features/emacs.nix args)
+    (import ./features/emacs.nix args)
     (import ../default/features/git.nix)
     (import ../default/features/direnv.nix)
     (import ../default/features/nushell.nix args)
