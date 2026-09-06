@@ -40,6 +40,14 @@
       `(lambda () (interactive)
 	 (exwm-workspace-switch ,mon))))))
 
+(defun my/scrot (dir)
+  "My interactive version of scrot that saves the screenshot in DIR or Images if not specified."
+  (interactive
+   (list (read-directory-name
+	  "Save screenshot in: "
+	  (expand-file-name "~/Images/screenshots"))))
+  (start-process "scrot-emacs" nil "scrot" (concat dir "/%Y-%m-%d_%H-%M-%S.png") "-d 2" "-s"))
+
 (setq exwm-workspace-number 9)
 
 (defun my/get-monitors ()
@@ -84,13 +92,23 @@
 (defun my/refresh-wifi ()
   "Show the currrent WIFI network SSID."
   (interactive)
-  (async-start
-   (lambda ()
-     (shell-command-to-string "LANG=C nmcli -t -f active,ssid dev wifi | grep ^yes | cut -d: -f2-"))
-   (lambda (x)
-     (setq my/wifi-string (string-trim x)))))
+  (setq my/wifi-string (string-trim (shell-command-to-string "LANG=C nmcli -t -f active,ssid dev wifi | grep ^yes | cut -d: -f2-"))))
 
-(my/refresh-wifi)
+(defun my/set-wifi (ssid password)
+  "Set the wifi network to SSID with the given PASSWORD or attempts to use it as a public network."
+  (interactive
+   (let ((tssid (completing-read "SSID: " (split-string (shell-command-to-string "nmcli -t -f SSID dev wifi list | grep -v '^$' | sort -u") "\n")))
+	 (tpass (read-passwd "Password: ")))
+     (list tssid tpass)))
+  (if (string= tpass "")
+      (start-process "set-wifi-emacs" nil (concat "nmcli dev wifi connect \"" tssid "\""))
+    (start-process "set-wifi-emacs" nil (concat "nmcli dev wifi connect \"" tssid "\" password \"" tpass "\""))))
+
+(defun my/wifi-util (cmd)
+  "Dispatch the wifi utility CMD."
+  (interactive
+   (list #'my/refresh-wifi #'my/set-wifi))
+  (call-interactively cmd))
 
 (defun my/spawn-vterm-buffer (&optional new-window)
   "Summon vterm as a new scratch-ish buffer, in a new window if NEW-WINDOW."
@@ -111,7 +129,7 @@
   (interactive)
   (find-file my/org-home))
 
-(bind-key* (kbd "s-i") 'my/refresh-wifi)
+(bind-key* (kbd "s-i") #'my/wifi-util)
 (bind-key* (kbd "s-w") 'my/set-monitor)
 (bind-key* (kbd "s-<return>") 'my/spawn-vterm-buffer)
 (bind-key* (kbd "s-e") 'my/show-org-home)
@@ -119,11 +137,12 @@
 (bind-key* (kbd "C-S-s-SPC") (lambda () (interactive) (my/launcher t)))
 (bind-key* (kbd "s-b") 'exwm-workspace-switch-to-buffer)
 (bind-key* (kbd "C-c RET") 'exwm-workspace-move-window)
+(bind-key* (kbd "s-S-<f11>") #'my/scrot)
 
 (my/set-monitor "eDP" t)
 
 (setq exwm-input-global-keys `(([?\s-r] . exwm-reset)
-			       (,(kbd "s-i") . my/refresh-wifi)
+			       (,(kbd "s-i") . my/wifi-util)
 			       (,(kbd "s-b") . exwm-workspace-switch-to-buffer)
 			       (,(kbd "s-w") . my/set-monitor)
 			       (,(kbd "s-<return>") . my/spawn-vterm-buffer)
