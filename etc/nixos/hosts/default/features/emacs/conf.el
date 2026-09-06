@@ -101,14 +101,16 @@
    (let ((tssid (completing-read "SSID: " (split-string (shell-command-to-string "nmcli -t -f SSID dev wifi list | grep -v '^$' | sort -u") "\n")))
 	 (tpass (read-passwd "Password: ")))
      (list tssid tpass)))
-  (if (string= tpass "")
-      (start-process "set-wifi-emacs" nil (concat "nmcli dev wifi connect \"" tssid "\""))
-    (start-process "set-wifi-emacs" nil (concat "nmcli dev wifi connect \"" tssid "\" password \"" tpass "\""))))
+  (if (string= password "")
+      (let ((out (shell-command-to-string (concat "nmcli dev wifi connect \"" ssid "\""))))
+	(ignore out))
+    (let ((out (shell-command-to-string (concat "nmcli dev wifi connect \"" ssid "\" password \"" pass "\""))))
+      (ignore out))))
 
 (defun my/wifi-util (cmd)
   "Dispatch the wifi utility CMD."
   (interactive
-   (completing-read "Action: " '(#'my/refresh-wifi #'my/set-wifi)))
+   (completing-read "Action: " '(("Refresh current SSID" #'my/refresh-wifi) ("Set the WIFI network" #'my/set-wifi))))
   (call-interactively cmd))
 
 (defun my/spawn-vterm-buffer (&optional new-window)
