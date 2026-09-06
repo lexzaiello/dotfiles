@@ -191,7 +191,7 @@ in {
   #  /etc/profiles/per-user/dowlandaiello/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "${pkgs.emacs30}/bin/emacsclient";
+    EDITOR = "${pkgs.emacs}/bin/emacsclient";
     SHELL = "zsh";
     GOPATH = "/home/dowlandaiello/go";
     GOBIN = "/home/dowlandaiello/go/bin";
