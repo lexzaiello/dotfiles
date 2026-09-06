@@ -453,3 +453,8 @@
 
 (add-hook 'reb-mode-hook (lambda () (flycheck-mode -1)))
 (add-hook 'reb-lisp-mode-hook (lambda () (flycheck-mode -1)))
+
+(add-to-list 'display-buffer-alist
+             '("\\*RE-Builder\\*"
+               (display-buffer-reuse-window display-buffer-below-selected)
+               (window-height . 0.35)))
