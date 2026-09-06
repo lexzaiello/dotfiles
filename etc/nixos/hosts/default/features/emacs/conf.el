@@ -107,7 +107,7 @@
 (defun my/wifi-util (cmd)
   "Dispatch the wifi utility CMD."
   (interactive
-   (list #'my/refresh-wifi #'my/set-wifi))
+   (completing-read "Action: " '(#'my/refresh-wifi #'my/set-wifi)))
   (call-interactively cmd))
 
 (defun my/spawn-vterm-buffer (&optional new-window)
