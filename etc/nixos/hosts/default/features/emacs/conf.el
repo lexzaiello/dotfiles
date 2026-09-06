@@ -423,6 +423,8 @@
 (setq xclip-mode t)
 (setq xclip-method (quote wl-copy))
 
+(setq reb-re-syntax 'string)
+
 (setq org-agenda-files '(my/org-home))
 (require 'org-agenda)
 (find-file my/org-home)
