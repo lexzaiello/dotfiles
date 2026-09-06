@@ -47,7 +47,7 @@
 	  "Save screenshot in: "
 	  (expand-file-name "~/Pictures/screenshots"))))
   (let ((saved-as (shell-command-to-string (concat "scrot" (concat dir "/%Y-%m-%d_%H-%M-%S.png") "-d 2" "-s" "-e 'echo $f'"))))
-    (dired saved-as)))
+    (dired-other-window saved-as)))
 
 (setq exwm-workspace-number 9)
 
