@@ -137,6 +137,7 @@ in {
     vscodium
     picom
     tex
+    scrot
     monero-gui
     (agda.withPackages (p: [
       p.standard-library
