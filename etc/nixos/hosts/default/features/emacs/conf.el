@@ -20,6 +20,7 @@
 (require 'exwm)
 (require 'doom-modeline)
 (require 'async)
+(require 're-builder)
 
 (setq aw-scope 'global)
 
