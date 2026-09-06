@@ -45,8 +45,9 @@
   (interactive
    (list (read-directory-name
 	  "Save screenshot in: "
-	  (expand-file-name "~/Images/screenshots"))))
-  (start-process "scrot-emacs" nil "scrot" (concat dir "/%Y-%m-%d_%H-%M-%S.png") "-d 2" "-s"))
+	  (expand-file-name "~/Pictures/screenshots"))))
+  (let ((saved-as (shell-command-to-string (concat "scrot" (concat dir "/%Y-%m-%d_%H-%M-%S.png") "-d 2" "-s" "-e 'echo $f'"))))
+    (dired saved-as)))
 
 (setq exwm-workspace-number 9)
 
