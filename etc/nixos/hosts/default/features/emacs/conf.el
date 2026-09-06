@@ -450,3 +450,6 @@
 (set-face-attribute 'window-divider-last-pixel nil
               :foreground "#D5C4A1")
 ;;; conf.el ends here
+
+(add-hook 'reb-mode-hook (lambda () (flycheck-mode -1)))
+(add-hook 'reb-lisp-mode-hook (lambda () (flycheck-mode -1)))
