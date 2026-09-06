@@ -21,6 +21,7 @@
 (require 'doom-modeline)
 (require 'async)
 (require 're-builder)
+(require 'dired-x)
 
 (setq aw-scope 'global)
 
@@ -46,8 +47,8 @@
    (list (read-directory-name
 	  "Save screenshot in: "
 	  (expand-file-name "~/Pictures/screenshots"))))
-  (let ((saved-as (shell-command-to-string (concat "scrot" (concat dir "/%Y-%m-%d_%H-%M-%S.png") "-d 2" "-s" "-e 'echo $f'"))))
-    (dired-other-window saved-as)))
+  (let ((saved-as (shell-command-to-string (concat "scrot " (concat dir "/%Y-%m-%d_%H-%M-%S.png") " -s -e 'echo $f'"))))
+    (dired-jump-other-window saved-as)))
 
 (setq exwm-workspace-number 9)
 
