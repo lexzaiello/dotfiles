@@ -27,6 +27,12 @@
 
 (defvar my/work-ids (number-sequence 0 8))
 
+(defun my/bind-global (bind to)
+  "Bind BIND to TO globally in EXWM."
+  (progn
+    (bind-key* (kbd bind) to)
+    (exwm-input-set-key (kbd bind) to)))
+
 (defun my/doall-workspaces (fn)
   "Run FN for its side effects on all monitor IDs."
   (mapc fn my/work-ids))
@@ -133,16 +139,6 @@
   (interactive)
   (find-file my/org-home))
 
-(bind-key* (kbd "s-i") #'my/wifi-util)
-(bind-key* (kbd "s-w") 'my/set-monitor)
-(bind-key* (kbd "s-<return>") 'my/spawn-vterm-buffer)
-(bind-key* (kbd "s-e") 'my/show-org-home)
-(bind-key* (kbd "C-S-SPC") 'my/launcher)
-(bind-key* (kbd "C-S-s-SPC") (lambda () (interactive) (my/launcher t)))
-(bind-key* (kbd "s-b") 'exwm-workspace-switch-to-buffer)
-(bind-key* (kbd "C-c RET") 'exwm-workspace-move-window)
-(bind-key* (kbd "s-S-<f11>") #'my/scrot)
-
 (my/set-monitor "eDP" t)
 
 (setq exwm-input-global-keys `(([?\s-r] . exwm-reset)
@@ -162,6 +158,16 @@
 
 (exwm-wm-mode)
 (exwm-randr-mode)
+
+(my/bind-global "s-i" #'my/wifi-util)
+(my/bind-global "s-w" 'my/set-monitor)
+(my/bind-global "s-<return>" 'my/spawn-vterm-buffer)
+(my/bind-global "s-e" 'my/show-org-home)
+(my/bind-global "C-S-SPC" 'my/launcher)
+(my/bind-global "C-S-s-SPC" (lambda () (interactive) (my/launcher t)))
+(my/bind-global "s-b" 'exwm-workspace-switch-to-buffer)
+(my/bind-global "C-c RET" 'exwm-workspace-move-window)
+(my/bind-global "s-S-<f11>" #'my/scrot)
 
 (set-frame-font my/mono-font)
 (set-face-attribute 'variable-pitch nil
@@ -183,7 +189,7 @@
       (local-set-key (kbd "C-c [") #'citar-insert-citation)))
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-(bind-key* (kbd "M-S-v") 'ace-swap-window)
+(my/bind-global "M-S-v" 'ace-swap-window)
 
 (setq gc-cons-percentage 0.1)
 
