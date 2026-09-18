@@ -138,6 +138,7 @@ in {
     picom
     tex
     scrot
+    typst
     monero-gui
     (agda.withPackages (p: [
       p.standard-library
