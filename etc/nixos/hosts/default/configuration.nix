@@ -81,6 +81,7 @@ in {
     proggyfonts
     roboto
     iosevka
+    nerd-fonts.dejavu-sans-mono
     nerd-fonts.iosevka
     nerd-fonts.iosevka-term
     nerd-fonts.iosevka-term-slab
