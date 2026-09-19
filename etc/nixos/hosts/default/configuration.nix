@@ -22,8 +22,8 @@ in {
     "https://cache.iog.io"
   ];
 
-  stylix.enable = true;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-light.yaml";
+  #stylix.enable = true;
+  #stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-light.yaml";
 
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelParams = ["amdgpu.backlight=0" "amdgpu.abmlevel=0"];

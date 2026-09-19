@@ -31,8 +31,8 @@ in {
 
         bottom = false;
         top = true;
-        background = "#${config.lib.stylix.colors.base00}";
-        foreground = "#${config.lib.stylix.colors.base05}";
+        #background = "#${config.lib.stylix.colors.base00}";
+        #foreground = "#${config.lib.stylix.colors.base05}";
 
         modules-left = "ewmh";
 
@@ -45,8 +45,8 @@ in {
         wm-restack = "i3";
 
         border-bottom-size = 1;
-        border-bottom-color = "#${config.lib.stylix.colors.base02}";
-        border-top-color = "#${config.lib.stylix.colors.base02}";
+        #border-bottom-color = "#${config.lib.stylix.colors.base02}";
+        #border-top-color = "#${config.lib.stylix.colors.base02}";
         line-size = 1;
       };
 
@@ -97,13 +97,13 @@ in {
         label-muted = "sound muted";
 
         bar-volume-width = "10";
-        bar-volume-foreground-0 = "#${config.lib.stylix.colors.base05}";
-        bar-volume-foreground-1 = "#${config.lib.stylix.colors.base05}";
-        bar-volume-foreground-2 = "#${config.lib.stylix.colors.base05}";
-        bar-volume-foreground-3 = "#${config.lib.stylix.colors.base05}";
-        bar-volume-foreground-4 = "#${config.lib.stylix.colors.base05}";
-        bar-volume-foreground-5 = "#${config.lib.stylix.colors.base05}";
-        bar-volume-foreground-6 = "#${config.lib.stylix.colors.base06}";
+        #bar-volume-foreground-0 = "#${config.lib.stylix.colors.base05}";
+        #bar-volume-foreground-1 = "#${config.lib.stylix.colors.base05}";
+        #bar-volume-foreground-2 = "#${config.lib.stylix.colors.base05}";
+        #bar-volume-foreground-3 = "#${config.lib.stylix.colors.base05}";
+        #bar-volume-foreground-4 = "#${config.lib.stylix.colors.base05}";
+        #bar-volume-foreground-5 = "#${config.lib.stylix.colors.base05}";
+        #bar-volume-foreground-6 = "#${config.lib.stylix.colors.base06}";
         bar-volume-indicator = "|";
         bar-volume-indicator-font = "2";
         bar-volume-fill = "─";
@@ -162,9 +162,9 @@ in {
       "module/ewmh" = fonts // {
         type = "internal/xworkspaces";
 
-        label-active-foreground = "#${config.lib.stylix.colors.base05}";
-        label-inactive-foreground = "#${config.lib.stylix.colors.base04}";
-        label-active-underline = "#${config.lib.stylix.colors.base05}";
+        #label-active-foreground = "#${config.lib.stylix.colors.base05}";
+        #label-inactive-foreground = "#${config.lib.stylix.colors.base04}";
+        #label-active-underline = "#${config.lib.stylix.colors.base05}";
 
         pin-workspaces = true;
         group-by-monitor = false;

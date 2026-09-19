@@ -54,16 +54,16 @@ in {
     (import ./features/nushell.nix args)
     (import ./features/polybar.nix args)
   ];
-  stylix.enable = true;
-  stylix.fonts.sizes.applications = 9;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-light.yaml";
-  stylix.targets.alacritty.colors.enable = true;
-  stylix.targets.alacritty.fonts.enable = true;
-  stylix.targets.emacs.colors.enable = true;
-  stylix.targets.emacs.enable = true;
-  stylix.targets.rofi.colors.enable = true;
-  stylix.targets.gnome.colors.enable = true;
-  stylix.targets.gtk.colors.enable = true;
+  #stylix.enable = true;
+  #stylix.fonts.sizes.applications = 9;
+  #stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-light.yaml";
+  #stylix.targets.alacritty.colors.enable = true;
+  #stylix.targets.alacritty.fonts.enable = true;
+  #stylix.targets.emacs.colors.enable = true;
+  #stylix.targets.emacs.enable = true;
+  #stylix.targets.rofi.colors.enable = true;
+  #stylix.targets.gnome.colors.enable = true;
+  #stylix.targets.gtk.colors.enable = true;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
