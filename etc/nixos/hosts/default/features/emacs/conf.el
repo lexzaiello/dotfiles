@@ -462,8 +462,7 @@
 (setq org-agenda-files '(my/org-home))
 (require 'org-agenda)
 
-(set-frame-font my/mono-font)
-(add-to-list 'default-frame-alist '(font . my/mono-font))
+(set-frame-font my/mono-font nil t)
 (set-face-attribute 'variable-pitch nil
               :family my/variable-font
               :height 1.0)
@@ -499,8 +498,8 @@
                (display-buffer-reuse-window display-buffer-below-selected)
                (window-height . 0.35)))
 
-(set-frame-font my/mono-font)
-(add-to-list 'default-frame-alist '(font . my/mono-font))
+(set-frame-font my/mono-font nil t)
 (set-face-attribute 'variable-pitch nil
               :family my/variable-font
               :height 1.0)
+(set-face-attribute 'default nil :family my/mono-font :height 110)
