@@ -38,6 +38,7 @@ in {
   # ZFS config
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = true;
+  boot.zfs.forceImportRoot = false;
 
   security.polkit.enable = true;
   services.upower.enable = true;
