@@ -105,6 +105,13 @@ in {
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  environment.sessionVariables = {
+    XMODIFIERS = "@im=exwm-xim";
+    GTK_IM_MODULE = "xim";
+    QT_IM_MODULE = "xim";
+    CLUTTER_IM_MODULE = "xim";
+  };
+
   # Configure keymap in X11
   services.autorandr.enable = true;
   services.picom = {
