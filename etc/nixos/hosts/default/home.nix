@@ -206,6 +206,7 @@ in {
   };
 
   xresources.properties = {
+    "UseXIM.useXIM" = "false";
     "emacs.useXIM" = "false";
     "emacs.useXim" = "false";
     "Emacs.useXIM" = "false";
