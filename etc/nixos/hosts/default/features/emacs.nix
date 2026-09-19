@@ -56,7 +56,6 @@ in {
         ace-jump-mode
         ess
         agda2-mode
-        agent-shell
         (callPackage ./lean4-mode.nix {
           inherit (pkgs) fetchFromGitHub;
           inherit (pkgs.lib) fakeHash;
