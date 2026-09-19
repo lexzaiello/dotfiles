@@ -178,11 +178,6 @@
 (push (kbd "s-S-<f11>") exwm-input-prefix-keys)
 (push (kbd "C-c C-\\") exwm-input-prefix-keys)
 
-(set-frame-font my/mono-font)
-(set-face-attribute 'variable-pitch nil
-              :family my/variable-font
-              :height 1.0)
-
 (setq-default line-spacing 0.1)
 
 (load "auctex.el" nil t t)
@@ -466,6 +461,13 @@
 
 (setq org-agenda-files '(my/org-home))
 (require 'org-agenda)
+
+(set-frame-font my/mono-font)
+(add-to-list 'default-frame-alist '(font . my/mono-font))
+(set-face-attribute 'variable-pitch nil
+              :family my/variable-font
+              :height 1.0)
+
 (find-file my/org-home)
 
 (with-eval-after-load 'tex
@@ -496,3 +498,9 @@
              '("\\*RE-Builder\\*"
                (display-buffer-reuse-window display-buffer-below-selected)
                (window-height . 0.35)))
+
+(set-frame-font my/mono-font)
+(add-to-list 'default-frame-alist '(font . my/mono-font))
+(set-face-attribute 'variable-pitch nil
+              :family my/variable-font
+              :height 1.0)

@@ -143,11 +143,14 @@ in {
 
     videoDrivers = [ "amdgpu" ];
     displayManager.lightdm.enable = true;
+    services.xserver.displayManager.sessionCommands = ''
+      echo 'Emacs.useXIM: false' | ${pkgs.xorg.xrdb}/bin/xrdb -merge
+    '';
     windowManager.session = [{
       name = "exwm-hm";
       start = ''
         # This ensures the display manager runs your Home Manager Emacs
-        exec emacs -mm --debug-init --xrm=emacs.useXIM:false
+        exec emacs -mm --debug-init --xrm='Emacs.useXIM: false'
       '';
     }];
 
