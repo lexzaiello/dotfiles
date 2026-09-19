@@ -138,7 +138,7 @@ in {
     picom
     tex
     scrot
-    obs
+    obs-studio
     monero-gui
     (agda.withPackages (p: [
       p.standard-library
