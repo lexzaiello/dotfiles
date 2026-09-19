@@ -3,7 +3,6 @@
 ;;; not much to say
 ;;; Code:
 (server-start)
-(setq inhibit-x-resources t)
 (setq site-run-file nil)
 (setq custom-file (make-temp-name "/tmp/emacs-custom-"))
 (pdf-tools-install)
