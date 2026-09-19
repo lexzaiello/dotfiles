@@ -206,7 +206,7 @@ in {
   };
 
   xresources.properties = {
-    "Emacs.useXIM" = "false";
+    "emacs.useXIM" = "false";
   };
 
   # Let Home Manager install and manage itself.

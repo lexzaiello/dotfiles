@@ -138,7 +138,7 @@ in {
       name = "exwm-hm";
       start = ''
         # This ensures the display manager runs your Home Manager Emacs
-        exec emacs -mm --debug-init
+        exec emacs -mm --debug-init --xrm=emacs.useXIM:false
       '';
     }];
 
