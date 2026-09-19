@@ -217,4 +217,12 @@ in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   programs.alacritty.enable = true;
+
+  gtk = {
+    enable = true;
+    font = {
+      name = import ./features/font.nix;
+      size = 10;
+    };
+  };
 }
