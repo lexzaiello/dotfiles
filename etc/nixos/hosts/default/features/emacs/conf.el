@@ -158,7 +158,7 @@
 (require 'ace-jump-mode)
 
 (exwm-wm-mode)
-(exwm-randr-mode)
+;;(exwm-randr-mode)
 
 (my/bind-global "s-i" #'my/wifi-util)
 (my/bind-global "s-w" 'my/set-monitor)
@@ -171,8 +171,7 @@
 (my/bind-global "s-S-<f11>" #'my/scrot)
 (my/bind-global "C-c C-\\" #'set-input-method)
 
-(let ((inhibit-message t))
-  (exwm-xim-mode 1))
+(exwm-xim-mode)
 
 (push ?\C-\\ exwm-input-prefix-keys)
 (push (kbd "C-S-s-SPC") exwm-input-prefix-keys)
