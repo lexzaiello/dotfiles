@@ -22,6 +22,7 @@
 (require 'async)
 (require 're-builder)
 (require 'dired-x)
+(require 'exwm-xim)
 
 (setq aw-scope 'global)
 
@@ -168,6 +169,12 @@
 (my/bind-global "s-b" 'exwm-workspace-switch-to-buffer)
 (my/bind-global "C-c RET" 'exwm-workspace-move-window)
 (my/bind-global "s-S-<f11>" #'my/scrot)
+(my/bind-global "C-c C-\\" #'set-input-method)
+
+(let ((inhibit-message t))
+  (exwm-xim-mode 1))
+
+(push ?\C-\\ exwm-input-prefix-keys)
 
 (set-frame-font my/mono-font)
 (set-face-attribute 'variable-pitch nil
