@@ -143,7 +143,7 @@ in {
 
     videoDrivers = [ "amdgpu" ];
     displayManager.lightdm.enable = true;
-    services.xserver.displayManager.sessionCommands = ''
+    displayManager.sessionCommands = ''
       echo 'Emacs.useXIM: false' | ${pkgs.xorg.xrdb}/bin/xrdb -merge
     '';
     windowManager.session = [{
