@@ -175,6 +175,9 @@
   (exwm-xim-mode 1))
 
 (push ?\C-\\ exwm-input-prefix-keys)
+(push (kbd "C-S-s-SPC") exwm-input-prefix-keys)
+(push (kbd "s-S-<f11>") exwm-input-prefix-keys)
+(push (kbd "C-c C-\\") exwm-input-prefix-keys)
 
 (set-frame-font my/mono-font)
 (set-face-attribute 'variable-pitch nil

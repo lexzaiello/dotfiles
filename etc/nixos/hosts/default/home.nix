@@ -200,6 +200,14 @@ in {
     PATH = "$PATH:/home/dowlandaiello/go/bin";
     GDK_BACKEND = "x11";
     GDK_GL = "gles";
+    XMODIFIERS = "@im=exwm-xim";
+    GTK_IM_MODULE = "xim";
+    QT_IM_MODULE = "xim";
+    CLUTTER_IM_MODULE = "xim";
+  };
+
+  xresources.properties = {
+    "Emacs.useXIM" = "false";
   };
 
   # Let Home Manager install and manage itself.
