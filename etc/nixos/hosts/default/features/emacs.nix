@@ -41,7 +41,6 @@ in {
         lsp-ui
         doom-modeline
         nerd-icons
-        treesit-grammars.with-all-grammars
         leerzeichen
         org-superstar
         rainbow-delimiters
