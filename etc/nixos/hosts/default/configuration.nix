@@ -66,6 +66,7 @@ in {
   console.useXkbConfig = true; # use xkb.options in tty.
 
   fonts.packages = with pkgs; [
+    dejavu_fonts
     comic-neue
     nerd-fonts.symbols-only
     nerd-fonts.comic-shanns-mono
