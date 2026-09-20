@@ -492,6 +492,9 @@
 (add-hook 'reb-mode-hook (lambda () (flycheck-mode -1)))
 (add-hook 'reb-lisp-mode-hook (lambda () (flycheck-mode -1)))
 
+(add-hook 'exwm-update-class-hook
+	  (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+
 (add-to-list 'display-buffer-alist
              '("\\*RE-Builder\\*"
                (display-buffer-reuse-window display-buffer-below-selected)
