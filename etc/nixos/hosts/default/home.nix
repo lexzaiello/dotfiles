@@ -143,6 +143,7 @@ in {
     (agda.withPackages (p: [
       p.standard-library
     ]))
+    gimp
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
