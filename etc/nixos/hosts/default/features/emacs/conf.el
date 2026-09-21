@@ -157,7 +157,7 @@
 (require 'ace-jump-mode)
 
 (exwm-wm-mode)
-;;(exwm-randr-mode)
+(exwm-randr-mode)
 
 (my/bind-global "s-i" #'my/wifi-util)
 (my/bind-global "s-w" 'my/set-monitor)
