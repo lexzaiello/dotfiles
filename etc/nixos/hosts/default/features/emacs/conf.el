@@ -479,7 +479,6 @@
   (setf (alist-get 'file org-link-frame-setup) 'find-file)
   (define-key org-mode-map (kbd "C-c RET") nil))
 
-(load-theme 'base16-gruvbox-light t)
 (set-face-attribute 'window-divider nil
               :foreground "#D5C4A1"
               :background nil)
