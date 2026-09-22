@@ -68,6 +68,7 @@ in {
   fonts.packages = with pkgs; [
     dejavu_fonts
     comic-neue
+    nerd-fonts.comic-shanns-mono
     nerd-fonts.symbols-only
     nerd-fonts.comic-shanns-mono
     font-awesome
