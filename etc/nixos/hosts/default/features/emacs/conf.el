@@ -504,3 +504,5 @@
               :family my/variable-font
               :height 1.0)
 (set-face-attribute 'default nil :family my/mono-font :height 110)
+
+(load-theme 'gruvbox-light-hard t)

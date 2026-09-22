@@ -8,6 +8,7 @@ in {
     enable = true;
     extraPackages = epkgs:
       with epkgs; [
+        gruvbox-theme
         bind-key
         async
         ace-window
