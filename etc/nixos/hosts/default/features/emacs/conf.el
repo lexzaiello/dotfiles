@@ -507,6 +507,6 @@
               :height 1.0)
 (set-face-attribute 'default nil :family my/mono-font :height 110)
 
-(setq TeX-view-program-selection '((output-pdf my/pdf-viewer)))
+(setq TeX-view-program-selection '((output-pdf 'my/pdf-viewer)))
 
 (load-theme 'gruvbox-light-hard t)
