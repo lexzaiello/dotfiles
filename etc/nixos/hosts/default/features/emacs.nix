@@ -34,7 +34,6 @@ in {
         org-superstar
         rainbow-delimiters
         which-key
-        latex-preview-pane
         helpful
         editorconfig
         magit

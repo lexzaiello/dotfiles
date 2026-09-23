@@ -481,9 +481,6 @@
   (setf (alist-get 'file org-link-frame-setup) 'find-file)
   (define-key org-mode-map (kbd "C-c RET") nil))
 
-(with-eval-after-load 'tex
-  (bind-key* (kbd "M-p") 'latex-preview-pane-update))
-
 (set-face-attribute 'window-divider nil
               :foreground "#D5C4A1"
               :background nil)
@@ -511,7 +508,5 @@
 (set-face-attribute 'default nil :family my/mono-font :height 110)
 
 (setq TeX-view-program-selection '((output-pdf my/pdf-viewer)))
-
-(latex-preview-pane-enable)
 
 (load-theme 'gruvbox-light-hard t)
