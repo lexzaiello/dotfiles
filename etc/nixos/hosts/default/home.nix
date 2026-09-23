@@ -130,7 +130,6 @@ in {
     vscodium
     picom
     tex
-    latex-preview-pane
     scrot
     obs-studio
     monero-gui

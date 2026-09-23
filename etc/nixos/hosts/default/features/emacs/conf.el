@@ -509,4 +509,6 @@
 
 (setq TeX-view-program-selection '((output-pdf my/pdf-viewer)))
 
+(latex-preview-pane-enable)
+
 (load-theme 'gruvbox-light-hard t)
