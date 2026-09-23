@@ -82,14 +82,7 @@ in {
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = let
-    tex = (pkgs.texlive.combine {
-      inherit (pkgs.texlive)
-        scheme-medium dvisvgm dvipng # for preview and export as html
-        wrapfig amsmath ulem hyperref capt-of mathpartir minted upquote
-        needspace ec cm;
-      #(setq org-latex-compiler "lualatex")
-      #(setq org-preview-latex-default-process 'dvisvgm)
-    });
+    tex = pkgs.texliveFull;
   in with pkgs; [
     kdePackages.okular
     cachix
