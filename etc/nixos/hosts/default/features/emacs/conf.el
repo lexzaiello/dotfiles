@@ -25,8 +25,6 @@
 
 (setq aw-scope 'global)
 
-(defvar my/pdf-viewer "PDF Tools")
-
 (defvar my/work-ids (number-sequence 0 8))
 
 (defun my/bind-global (bind to)
@@ -507,6 +505,6 @@
               :height 1.0)
 (set-face-attribute 'default nil :family my/mono-font :height 110)
 
-(setq TeX-view-program-selection '((output-pdf 'my/pdf-viewer)))
+(setq TeX-view-program-selection '((output-pdf "PDF Tools")))
 
 (load-theme 'gruvbox-light-hard t)
