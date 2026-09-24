@@ -130,7 +130,7 @@
 ; Docs, shortcut links
 (defvar my/org-home "~/Documents/org/agenda/Main.org")
 
-(defvar my/mono-font "ComicShannsMono Nerd Font")
+(defvar my/mono-font "IosevkaTerm Nerd Font")
 
 (defvar my/variable-font "Comic Neue")
 
