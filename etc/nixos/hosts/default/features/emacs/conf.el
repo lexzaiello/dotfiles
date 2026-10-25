@@ -16,6 +16,7 @@
   (display-battery-mode 1))
 (require 'bind-key)
 (require 'exwm-randr)
+(require 'notifications)
 (require 'exwm)
 (require 'doom-modeline)
 (require 'async)
@@ -508,3 +509,5 @@
 (setq TeX-view-program-selection '((output-pdf "PDF Tools")))
 
 (load-theme 'gruvbox-light-hard t)
+
+(ednc-mode)
