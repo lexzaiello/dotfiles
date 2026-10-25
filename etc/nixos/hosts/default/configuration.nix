@@ -283,6 +283,7 @@ in {
 
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    libnotify
     gtk3
     rofi
     xorg.xbacklight
