@@ -8,6 +8,7 @@ in {
     enable = true;
     extraPackages = epkgs:
       with epkgs; [
+        ednc
         gruvbox-theme
         bind-key
         async
