@@ -263,7 +263,7 @@
   "List-notifications emits EDNC notifications."
   (mapconcat #'ednc-format-notification (ednc-notifications) ""))
 
-(doom-modeline-def-segment my/notifs list-notifications)
+(doom-modeline-def-segment my/notifs (list-notifications))
 
 (doom-modeline-def-modeline 'main
   '(bar workspace-name window-number modals matches follow buffer-info remote-host
