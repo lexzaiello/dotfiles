@@ -12,6 +12,7 @@
 (tool-bar-mode -1)
 (tooltip-mode -1)
 (menu-bar-mode -1)
+(display-time-mode 1)
 (when (directory-files "/sys/class/power_supply/" nil "^BAT")
   (display-battery-mode 1))
 (require 'bind-key)
@@ -254,25 +255,22 @@
   (let ((out (shell-command-to-string "pactl get-sink-volume @DEFAULT_SINK@ 2>/dev/null")))
     (if (string-match "\\([0-9]+\\)%" out) (match-string 1 out) "?")))
 
-(defun my/--refresh-fast ()
-  "CPU/RAM: cheap procfs read, poll often."
-  (setq my/cpu-string (format "%d%%" (my/--cpu-usage)))
-  (setq my/ram-string (format "%d%%" (my/--ram-usage))))
+(ednc-mode)
 
-(run-with-timer 0 2 #'my/--refresh-fast)
+(doom-modeline-def-segment my/wifi (concat "  " my/wifi-string))
 
-;; --- doom-modeline segments (just read the cached vars, no I/O here) ---
-(doom-modeline-def-segment my/cpu   (concat "  " my/cpu-string))
-(doom-modeline-def-segment my/ram   (concat "  " my/ram-string))
-(doom-modeline-def-segment my/wifi  (concat "  " my/wifi-string))
-(doom-modeline-def-segment my/volume (concat "  " my/volume-string))
+(defun list-notifications ()
+  "List-notifications emits EDNC notifications."
+  (mapconcat #'ednc-format-notification (ednc-notifications) ""))
+
+(doom-modeline-def-segment my/notifs list-notifications)
 
 (doom-modeline-def-modeline 'main
   '(bar workspace-name window-number modals matches follow buffer-info remote-host
     buffer-position word-count parrot selection-info)
-  '(compilation objed-state misc-info persp-name grip irc mu4e gnus github debug repl
+  '(my/notifs compilation objed-state misc-info persp-name grip irc mu4e gnus github debug repl
     lsp minor-modes input-method indent-info buffer-encoding major-mode process vcs check
-    my/wifi my/volume my/cpu my/ram battery time))
+    my/wifi battery time))
 
 (setq doom-modeline-support-imenu t)
 (setq doom-modeline-height 25)
@@ -510,4 +508,3 @@
 
 (load-theme 'gruvbox-light-hard t)
 
-(ednc-mode)
