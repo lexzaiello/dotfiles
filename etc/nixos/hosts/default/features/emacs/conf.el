@@ -493,6 +493,10 @@
 (add-hook 'exwm-update-class-hook
 	  (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
 
+(add-hook 'lean4-mode-hook
+          (lambda ()
+            (setq-local lsp-document-sync-method 'lsp--sync-full)))
+
 (add-to-list 'display-buffer-alist
              '("\\*RE-Builder\\*"
                (display-buffer-reuse-window display-buffer-below-selected)
@@ -507,4 +511,3 @@
 (setq TeX-view-program-selection '((output-pdf "PDF Tools")))
 
 (load-theme 'gruvbox-light-hard t)
-
