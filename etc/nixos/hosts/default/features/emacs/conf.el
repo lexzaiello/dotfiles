@@ -509,3 +509,4 @@
 (load-theme 'gruvbox-light-hard t)
 
 (setq TeX-newline-function 'newline)
+
