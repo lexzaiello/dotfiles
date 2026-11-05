@@ -507,3 +507,5 @@
 (setq TeX-view-program-selection '((output-pdf "PDF Tools")))
 
 (load-theme 'gruvbox-light-hard t)
+
+(setq TeX-newline-function 'newline)
