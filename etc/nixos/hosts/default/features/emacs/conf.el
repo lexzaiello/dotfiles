@@ -472,7 +472,7 @@
 
 (with-eval-after-load 'tex
                       (add-to-list 'TeX-command-list
-                      '("NixBuild" "nix build"
+                      '("NixBuild" "nix build .#tex"
                       TeX-run-command nil t :help "Run project-specific Nix build")
                       t))
 
