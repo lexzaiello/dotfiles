@@ -171,6 +171,9 @@
 (my/bind-global "C-c RET" 'exwm-workspace-move-window)
 (my/bind-global "s-S-<f11>" #'my/scrot)
 (my/bind-global "C-c C-\\" #'set-input-method)
+(bind-key* (kbd "s-c") 'compile)
+
+(setq compile-command "nix build")
 
 (exwm-xim-mode)
 
