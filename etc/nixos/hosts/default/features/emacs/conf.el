@@ -33,6 +33,7 @@
 
 (defun my/clean-quit-exwm ()
   "Kill all EXWM processes before quitting Emacs.  Force quit."
+  (interactive)
   (setq kill-buffer-query-functions nil)
   (setq confirm-kill-processes nil)
 
