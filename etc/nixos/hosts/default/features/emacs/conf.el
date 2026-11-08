@@ -16,6 +16,10 @@
 (when (directory-files "/sys/class/power_supply/" nil "^BAT")
   (display-battery-mode 1))
 (require 'bind-key)
+
+(setq mouse-autoselect-window t
+      focus-follows-mouse t)
+
 (require 'exwm-randr)
 (require 'notifications)
 (require 'exwm)
