@@ -172,7 +172,7 @@
 			       (,(kbd "M-o") . ace-window)))
 
 (require 'lean4-mode)
-(require 'ace-jump-mode)
+(require 'avy)
 
 (exwm-wm-mode)
 (exwm-randr-mode)
@@ -213,7 +213,7 @@
     (lambda ()
       (local-set-key (kbd "C-c [") #'citar-insert-citation)))
 
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(my/bind-global "M-s" 'avy-goto-word-or-subword-1)
 (my/bind-global "M-S-v" 'ace-swap-window)
 
 (setq gc-cons-percentage 0.1)

@@ -55,7 +55,7 @@ in {
         haskell-mode
         flycheck
         company-coq
-        ace-jump-mode
+        avy
         ess
         agda2-mode
         (callPackage ./lean4-mode.nix {
