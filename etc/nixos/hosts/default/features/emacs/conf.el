@@ -36,12 +36,12 @@
   (interactive)
   (setq confirm-kill-processes nil)
   (progn
-    (save-some-buffers t)
+    (save-some-buffers nil)
     (dolist (buf (buffer-list))
       (with-current-buffer buf
 	(when (eq major-mode 'exwm-mode)
 	  (ignore-errors (kill-buffer buf)))))
-    t))
+    (kill-emacs)))
 
 (defvar my/work-ids (number-sequence 0 8))
 
