@@ -34,18 +34,14 @@
 (defun my/clean-quit-exwm ()
   "Kill all EXWM processes before quitting Emacs.  Force quit."
   (interactive)
-  (setq kill-buffer-query-functions nil)
   (setq confirm-kill-processes nil)
-
   (progn
-         (dolist (buf (buffer-list))
-           (with-current-buffer buf
-             (when (eq major-mode 'exwm-mode)
-               (ignore-errors
-                 (exwm-layout--hide buf)
-                 (kill-buffer buf)))))
-	 (save-some-buffers t))
-  t)
+    (save-some-buffers t)
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+	(when (eq major-mode 'exwm-mode)
+	  (ignore-errors (kill-buffer buf)))))
+    t))
 
 (defvar my/work-ids (number-sequence 0 8))
 
