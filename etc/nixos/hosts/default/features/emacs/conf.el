@@ -190,7 +190,7 @@
 (my/bind-global "C-x C-c" #'my/clean-quit-exwm)
 (bind-key* (kbd "s-c") 'compile)
 
-(setq compile-command "nix build")
+(setq compile-command "nix build -L")
 
 (exwm-xim-mode)
 
