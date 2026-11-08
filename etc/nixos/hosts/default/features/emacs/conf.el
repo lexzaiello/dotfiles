@@ -31,6 +31,21 @@
 
 (setq aw-scope 'global)
 
+(defun my/clean-quit-exwm ()
+  "Kill all EXWM processes before quitting Emacs.  Force quit."
+  (setq kill-buffer-query-functions nil)
+  (setq confirm-kill-processes nil)
+
+  (progn
+         (dolist (buf (buffer-list))
+           (with-current-buffer buf
+             (when (eq major-mode 'exwm-mode)
+               (ignore-errors
+                 (exwm-layout--hide buf)
+                 (kill-buffer buf)))))
+	 (save-some-buffers t))
+  t)
+
 (defvar my/work-ids (number-sequence 0 8))
 
 (defun my/bind-global (bind to)
@@ -175,6 +190,7 @@
 (my/bind-global "C-c RET" 'exwm-workspace-move-window)
 (my/bind-global "s-S-<f11>" #'my/scrot)
 (my/bind-global "C-c C-\\" #'set-input-method)
+(my/bind-global "C-x C-c" #'my/clean-quit-exwm)
 (bind-key* (kbd "s-c") 'compile)
 
 (setq compile-command "nix build")
